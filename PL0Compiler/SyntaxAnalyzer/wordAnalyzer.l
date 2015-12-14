@@ -16,10 +16,16 @@ delim		[ \t\n]
 whitespace	{delim}+
 letter		[a-z]
 digit		[0-9]
+unit		{digit}+
+identifier	letter{letter|digit}*
+addOperator	[+-]
+mulOperator	[*/]
+relOperator "="| "<>" | "<" | "<=" | ">" | ">="
 
 const		"const"
 var			"var"
 procedure	"procedure"
+odd			"odd"
 if			"if"
 then		"then"
 while		"while"

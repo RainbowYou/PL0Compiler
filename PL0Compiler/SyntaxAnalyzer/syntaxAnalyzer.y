@@ -62,13 +62,13 @@ Grammar
 	;
 	constDef: identifier '=' uint
 	;
-	uint: digit
-	| digit unit
-	;
-	identifier: letter
-	| letter identifier
-	| letter digit
-	;
+	//uint: digit
+	//| digit unit
+	//;
+	//identifier: letter
+	//| letter identifier
+	//| letter digit
+	//;
 	varDec: VAR identifier moreIdentifier ';'
 	;
 	moreIdentifier: ',' identifier
@@ -110,22 +110,22 @@ Grammar
 	| mulOperator factor
 	|
 	;
-	addOperator: '+'
-	| '-'
-	;
-	mulOperator: '*'
-	| '/'
-	;
+	//addOperator: '+'
+	//| '-'
+	//;
+	//mulOperator: '*'
+	//| '/'
+	//;
 	contidition: expr relOperator expr
-	| 'o''d''d' expr
+	| ODD expr
 	;
-	relOperator: '='
-	| '<''>'
-	| '<'
-	| '<''='
-	| '>'
-	| '>''='
-	;
+	//relOperator: '='
+	//| '<''>'
+	//| '<'
+	//| '<''='
+	//| '>'
+	//| '>''='
+	//;
 	conditionSen: IF condition THEN sentence
 	;
 	whileSen: WHILE condition DO sentence
