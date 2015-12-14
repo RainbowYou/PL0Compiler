@@ -54,7 +54,7 @@ Grammar
 	| constDec varDec sentence
 	| constDec varDec proDec sentence 
 	;
-	constDec: 'c''o''n''s''t' constDef moreoConstDef ';'
+	constDec: CONST constDef moreoConstDef ';'
 	;
 	moreConstDef: ',' constDef
 	| ',' constDef moreConstDef
@@ -69,14 +69,14 @@ Grammar
 	| letter identifier
 	| letter digit
 	;
-	varDec: 'v''a''r' identifier moreIdentifier ';'
+	varDec: VAR identifier moreIdentifier ';'
 	;
 	moreIdentifier: ',' identifier
 	|',' identifier moreIdentifier
 	|
 	;
 	proDec: proHead partProg moreProDec ';'
-	proHead: 'p''r''o''c''e''d''u''r''e' identifier ';'
+	proHead: PROCEDURE identifier ';'
 	moreProDec: ';' proDec
 	| ';' proDec moreProDec
 	|
@@ -126,20 +126,20 @@ Grammar
 	| '>'
 	| '>''='
 	;
-	conditionSen: 'i''f' condition 't''h''e''n' sentence
+	conditionSen: IF condition THEN sentence
 	;
-	whileSen: 'w''h''i''l''e' condition 'd''o' sentence
+	whileSen: WHILE condition DO sentence
 	;
-	proCallSen: 'c''a''l''l' identifier
-	reuniteSen: 'b''e''g''i''n' sentence moreSentence 'e''n''d'
+	proCallSen: CALL identifier
+	reuniteSen: BEGIN sentence moreSentence END
 	;
 	moreSentence: ';' sentence
 	| ';' sentence moreSentence
 	|
 	;
-	readSen: 'r''e''a''d' '(' identifier moreIdentifier ')'
+	readSen: READ '(' identifier moreIdentifier ')'
 	;
-	writeSen: 'w''r''i''t''e' '(' expr moreExpr ')'
+	writeSen: WRITE '(' expr moreExpr ')'
 	;
 	moreExpr: ',' expr
 	| ',' expr moreExpr

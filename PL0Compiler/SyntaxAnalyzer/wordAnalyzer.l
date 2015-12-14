@@ -12,8 +12,23 @@ Date: 2015Äê12ÔÂ14ÈÕ
 /////////////////////////////////////////////////////////////////////////////
 // declarations section
 
-letter [a-z]
-digit  [0-9]
+delim		[ \t\n]
+whitespace	{delim}+
+letter		[a-z]
+digit		[0-9]
+
+const		"const"
+var			"var"
+procedure	"procedure"
+if			"if"
+then		"then"
+while		"while"
+do			"do"
+call		"call"
+begin		"begin"
+end			"end"
+read		"read"
+write		"write"
 
 // lexical analyser name
 %name wordAnalyzer
