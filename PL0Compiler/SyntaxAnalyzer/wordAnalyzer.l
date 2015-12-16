@@ -18,8 +18,8 @@ letter		[a-z]
 digit		[0-9]
 unit		{digit}+
 identifier	letter{letter|digit}*
-addOperator	[+-]
-mulOperator	[*/]
+addOperator	[\+\-]
+mulOperator	[\*\/]
 relOperator "="| "<>" | "<" | "<=" | ">" | ">="
 
 const		"const"
@@ -35,6 +35,15 @@ begin		"begin"
 end			"end"
 read		"read"
 write		"write"
+
+comma		","
+semicolon	";"
+equal		"="
+assign		":="
+add			"+"
+minus		"-"
+lp			"("
+rp			")"
 
 // lexical analyser name
 %name wordAnalyzer

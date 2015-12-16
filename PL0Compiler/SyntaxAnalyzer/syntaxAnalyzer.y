@@ -11,7 +11,9 @@ Date: 2015年12月14日
 
 /////////////////////////////////////////////////////////////////////////////
 // declarations section
-
+%token IDENTIFIER UINT DIGIT LETTER ADDOPERATOR MULOPERATOR RELOPERATOR 
+		CONST VAR PROCEDURE ODD IF THEN WHILE DO CALL BEGIN END READ WRITE
+		COMMA SEMICOLON EQUAL ASSIGN ADD MINUS LP RP
 // parser name
 %name syntaxAnalyzer
 
@@ -44,7 +46,7 @@ Date: 2015年12月14日
 /////////////////////////////////////////////////////////////////////////////
 // rules section
 
-// place your YACC rules here (there must be at least one)
+// YACC Rules
 
 Grammar
 	prog: partProg
@@ -54,31 +56,24 @@ Grammar
 	| constDec varDec sentence
 	| constDec varDec proDec sentence 
 	;
-	constDec: CONST constDef moreoConstDef ';'
+	constDec: CONST constDef moreoConstDef SEMICOLON
 	;
-	moreConstDef: ',' constDef
-	| ',' constDef moreConstDef
+	moreConstDef: COMMA constDef
+	| COMMA constDef moreConstDef
 	|
 	;
-	constDef: identifier '=' uint
+	constDef: IDENTIFIER EQUAL UINT
 	;
-	//uint: digit
-	//| digit unit
-	//;
-	//identifier: letter
-	//| letter identifier
-	//| letter digit
-	//;
-	varDec: VAR identifier moreIdentifier ';'
+	varDec: VAR IDENTIFIER moreIdentifier SEMICOLON
 	;
-	moreIdentifier: ',' identifier
-	|',' identifier moreIdentifier
+	moreIdentifier: COMMA IDENTIFIER
+	|COMMA IDENTIFIER moreIdentifier
 	|
 	;
-	proDec: proHead partProg moreProDec ';'
-	proHead: PROCEDURE identifier ';'
-	moreProDec: ';' proDec
-	| ';' proDec moreProDec
+	proDec: proHead partProg moreProDec SEMICOLON
+	proHead: PROCEDURE IDENTIFIER SEMICOLON
+	moreProDec: SEMICOLON proDec
+	| SEMICOLON proDec moreProDec
 	|
 	;
 	sentence: assignSen
@@ -90,59 +85,46 @@ Grammar
 	| writeSen
 	|
 	;
-	assignSen: identifier ':''=' expr
+	assignSen: IDENTIFIER ASSIGN expr
 	;
 	expr: item moreItem
-	| '+' item moreItem
-	| '-' item moreItem
+	| ADD item moreItem
+	| MINUS item moreItem
 	;
-	moreItem: addOperator item
-	| addOperator item moreItem
+	moreItem: ADDOPERATOR item
+	| ADDOPERATOR item moreItem
 	|
 	;
 	item: factor moreFactor
 	;
-	factor: identifier
-	| uint
-	| '(' expr ')'
+	factor: IDENTIFIER
+	| UINT
+	| LP expr RP
 	;
-	moreFactor: mulOperator factor
-	| mulOperator factor
+	moreFactor: MULOPERATOR factor
+	| MULOPERATOR factor
 	|
 	;
-	//addOperator: '+'
-	//| '-'
-	//;
-	//mulOperator: '*'
-	//| '/'
-	//;
-	contidition: expr relOperator expr
+	contidition: expr RELOPERATOR expr
 	| ODD expr
 	;
-	//relOperator: '='
-	//| '<''>'
-	//| '<'
-	//| '<''='
-	//| '>'
-	//| '>''='
-	//;
 	conditionSen: IF condition THEN sentence
 	;
 	whileSen: WHILE condition DO sentence
 	;
-	proCallSen: CALL identifier
+	proCallSen: CALL IDENTIFIER
 	reuniteSen: BEGIN sentence moreSentence END
 	;
-	moreSentence: ';' sentence
-	| ';' sentence moreSentence
+	moreSentence: SEMICOLON sentence
+	| SEMICOLON sentence moreSentence
 	|
 	;
-	readSen: READ '(' identifier moreIdentifier ')'
+	readSen: READ LP IDENTIFIER moreIdentifier RP
 	;
-	writeSen: WRITE '(' expr moreExpr ')'
+	writeSen: WRITE LP expr moreExpr RP
 	;
-	moreExpr: ',' expr
-	| ',' expr moreExpr
+	moreExpr: COMMA expr
+	| COMMA expr moreExpr
 	|
 	;
 	
