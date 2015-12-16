@@ -5,7 +5,8 @@ ParserWizard generated YACC file.
 
 Date: 2015年12月14日
 ****************************************************************************/
-
+#include <iostream>
+#include <cstring>
 #include "wordAnalyzer.h"
 %}
 
@@ -13,7 +14,7 @@ Date: 2015年12月14日
 // declarations section
 %token IDENTIFIER UINT DIGIT LETTER ADDOPERATOR MULOPERATOR RELOPERATOR 
 		CONST VAR PROCEDURE ODD IF THEN WHILE DO CALL BEGIN END READ WRITE
-		COMMA SEMICOLON EQUAL ASSIGN ADD MINUS LP RP
+		COMMA SEMICOLON EQUAL ASSIGN PLUS MINUS LP RP
 // parser name
 %name syntaxAnalyzer
 
@@ -62,7 +63,7 @@ Grammar
 	| COMMA constDef moreConstDef
 	|
 	;
-	constDef: IDENTIFIER EQUAL UINT
+	constDef: IDENTIFIER EQUAL UINT {$$=$3;}
 	;
 	varDec: VAR IDENTIFIER moreIdentifier SEMICOLON
 	;
@@ -85,10 +86,10 @@ Grammar
 	| writeSen
 	|
 	;
-	assignSen: IDENTIFIER ASSIGN expr
+	assignSen: IDENTIFIER ASSIGN expr {$1=$3;}
 	;
 	expr: item moreItem
-	| ADD item moreItem
+	| PLUS item moreItem
 	| MINUS item moreItem
 	;
 	moreItem: ADDOPERATOR item
@@ -145,5 +146,15 @@ int main(void)
 		}
 	}
 	return n;
+}
+
+void yyerror(char* s)
+{
+	fprintf(stderr,"%s\n",s);
+}
+
+int yywrap()
+{
+	return 1;
 }
 
