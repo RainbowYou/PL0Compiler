@@ -19,7 +19,7 @@
 # YACC verbose file generated from syntaxAnalyzer.y.
 # 
 # Date: 12/16/15
-# Time: 20:55:23
+# Time: 21:21:59
 # 
 # AYACC Version: 2.07
 #############################################################################
@@ -132,16 +132,16 @@ state 0
 	.  reduce 27
 
 	prog  goto 9
-	sentence  goto 10
-	constDec  goto 11
-	partProg  goto 12
+	partProg  goto 10
+	sentence  goto 11
+	constDec  goto 12
 	assignSen  goto 13
-	conditionSen  goto 14
-	whileSen  goto 15
-	readSen  goto 16
-	writeSen  goto 17
-	reuniteSen  goto 18
-	proCallSen  goto 19
+	reuniteSen  goto 14
+	proCallSen  goto 15
+	conditionSen  goto 16
+	whileSen  goto 17
+	readSen  goto 18
+	writeSen  goto 19
 
 
 state 1
@@ -168,10 +168,10 @@ state 3
 	ODD  shift 27
 	LP  shift 28
 
-	expr  goto 29
-	item  goto 30
-	condition  goto 31
-	factor  goto 32
+	factor  goto 29
+	condition  goto 30
+	expr  goto 31
+	item  goto 32
 
 
 state 4
@@ -184,10 +184,10 @@ state 4
 	ODD  shift 27
 	LP  shift 28
 
-	expr  goto 29
-	item  goto 30
+	factor  goto 29
 	condition  goto 33
-	factor  goto 32
+	expr  goto 31
+	item  goto 32
 
 
 state 5
@@ -211,12 +211,12 @@ state 6
 
 	sentence  goto 35
 	assignSen  goto 13
-	conditionSen  goto 14
-	whileSen  goto 15
-	readSen  goto 16
-	writeSen  goto 17
-	reuniteSen  goto 18
-	proCallSen  goto 19
+	reuniteSen  goto 14
+	proCallSen  goto 15
+	conditionSen  goto 16
+	whileSen  goto 17
+	readSen  goto 18
+	writeSen  goto 19
 
 
 state 7
@@ -238,12 +238,18 @@ state 9
 
 
 state 10
+	prog : partProg .  (1)
+
+	.  reduce 1
+
+
+state 11
 	partProg : sentence .  (2)
 
 	.  reduce 2
 
 
-state 11
+state 12
 	partProg : constDec . sentence
 	partProg : constDec . varDec sentence
 	partProg : constDec . varDec proDec sentence
@@ -262,18 +268,12 @@ state 11
 	sentence  goto 39
 	varDec  goto 40
 	assignSen  goto 13
-	conditionSen  goto 14
-	whileSen  goto 15
-	readSen  goto 16
-	writeSen  goto 17
-	reuniteSen  goto 18
-	proCallSen  goto 19
-
-
-state 12
-	prog : partProg .  (1)
-
-	.  reduce 1
+	reuniteSen  goto 14
+	proCallSen  goto 15
+	conditionSen  goto 16
+	whileSen  goto 17
+	readSen  goto 18
+	writeSen  goto 19
 
 
 state 13
@@ -283,39 +283,39 @@ state 13
 
 
 state 14
-	sentence : conditionSen .  (21)
-
-	.  reduce 21
-
-
-state 15
-	sentence : whileSen .  (22)
-
-	.  reduce 22
-
-
-state 16
-	sentence : readSen .  (25)
-
-	.  reduce 25
-
-
-state 17
-	sentence : writeSen .  (26)
-
-	.  reduce 26
-
-
-state 18
 	sentence : reuniteSen .  (24)
 
 	.  reduce 24
 
 
-state 19
+state 15
 	sentence : proCallSen .  (23)
 
 	.  reduce 23
+
+
+state 16
+	sentence : conditionSen .  (21)
+
+	.  reduce 21
+
+
+state 17
+	sentence : whileSen .  (22)
+
+	.  reduce 22
+
+
+state 18
+	sentence : readSen .  (25)
+
+	.  reduce 25
+
+
+state 19
+	sentence : writeSen .  (26)
+
+	.  reduce 26
 
 
 state 20
@@ -327,9 +327,9 @@ state 20
 	UINT  shift 26
 	LP  shift 28
 
+	factor  goto 29
 	expr  goto 41
-	item  goto 30
-	factor  goto 32
+	item  goto 32
 
 
 state 21
@@ -355,8 +355,8 @@ state 23
 	UINT  shift 26
 	LP  shift 28
 
+	factor  goto 29
 	item  goto 45
-	factor  goto 32
 
 
 state 24
@@ -366,8 +366,8 @@ state 24
 	UINT  shift 26
 	LP  shift 28
 
+	factor  goto 29
 	item  goto 46
-	factor  goto 32
 
 
 state 25
@@ -391,9 +391,9 @@ state 27
 	UINT  shift 26
 	LP  shift 28
 
+	factor  goto 29
 	expr  goto 47
-	item  goto 30
-	factor  goto 32
+	item  goto 32
 
 
 state 28
@@ -405,41 +405,41 @@ state 28
 	UINT  shift 26
 	LP  shift 28
 
+	factor  goto 29
 	expr  goto 48
-	item  goto 30
-	factor  goto 32
+	item  goto 32
 
 
 state 29
-	condition : expr . RELOPERATOR expr
-
-	RELOPERATOR  shift 49
-
-
-state 30
-	expr : item . moreItem
-	moreItem : .  (34)
-
-	ADDOPERATOR  shift 50
-	.  reduce 34
-
-	moreItem  goto 51
-
-
-state 31
-	conditionSen : IF condition . THEN sentence
-
-	THEN  shift 52
-
-
-state 32
 	item : factor . moreFactor
 	moreFactor : .  (41)
 
-	MULOPERATOR  shift 53
+	MULOPERATOR  shift 49
 	.  reduce 41
 
-	moreFactor  goto 54
+	moreFactor  goto 50
+
+
+state 30
+	conditionSen : IF condition . THEN sentence
+
+	THEN  shift 51
+
+
+state 31
+	condition : expr . RELOPERATOR expr
+
+	RELOPERATOR  shift 52
+
+
+state 32
+	expr : item . moreItem
+	moreItem : .  (34)
+
+	ADDOPERATOR  shift 53
+	.  reduce 34
+
+	moreItem  goto 54
 
 
 state 33
@@ -479,9 +479,9 @@ state 37
 	UINT  shift 26
 	LP  shift 28
 
+	factor  goto 29
 	expr  goto 59
-	item  goto 30
-	factor  goto 32
+	item  goto 32
 
 
 state 38
@@ -513,14 +513,14 @@ state 40
 
 	proDec  goto 62
 	sentence  goto 63
-	assignSen  goto 13
-	conditionSen  goto 14
-	whileSen  goto 15
-	readSen  goto 16
-	writeSen  goto 17
 	proHead  goto 64
-	reuniteSen  goto 18
-	proCallSen  goto 19
+	assignSen  goto 13
+	reuniteSen  goto 14
+	proCallSen  goto 15
+	conditionSen  goto 16
+	whileSen  goto 17
+	readSen  goto 18
+	writeSen  goto 19
 
 
 state 41
@@ -554,7 +554,7 @@ state 45
 	expr : '+' item . moreItem
 	moreItem : .  (34)
 
-	ADDOPERATOR  shift 50
+	ADDOPERATOR  shift 53
 	.  reduce 34
 
 	moreItem  goto 68
@@ -564,7 +564,7 @@ state 46
 	expr : '-' item . moreItem
 	moreItem : .  (34)
 
-	ADDOPERATOR  shift 50
+	ADDOPERATOR  shift 53
 	.  reduce 34
 
 	moreItem  goto 69
@@ -583,38 +583,23 @@ state 48
 
 
 state 49
-	condition : expr RELOPERATOR . expr
+	moreFactor : MULOPERATOR . factor moreFactor
+	moreFactor : MULOPERATOR . factor
 
-	'+'  shift 23
-	'-'  shift 24
 	IDENTIFIER  shift 25
 	UINT  shift 26
 	LP  shift 28
 
-	expr  goto 71
-	item  goto 30
-	factor  goto 32
+	factor  goto 71
 
 
 state 50
-	moreItem : ADDOPERATOR . item
-	moreItem : ADDOPERATOR . item moreItem
+	item : factor moreFactor .  (35)
 
-	IDENTIFIER  shift 25
-	UINT  shift 26
-	LP  shift 28
-
-	item  goto 72
-	factor  goto 32
+	.  reduce 35
 
 
 state 51
-	expr : item moreItem .  (29)
-
-	.  reduce 29
-
-
-state 52
 	conditionSen : IF condition THEN . sentence
 	sentence : .  (27)
 
@@ -627,31 +612,46 @@ state 52
 	WRITE  shift 8
 	.  reduce 27
 
-	sentence  goto 73
+	sentence  goto 72
 	assignSen  goto 13
-	conditionSen  goto 14
-	whileSen  goto 15
-	readSen  goto 16
-	writeSen  goto 17
-	reuniteSen  goto 18
-	proCallSen  goto 19
+	reuniteSen  goto 14
+	proCallSen  goto 15
+	conditionSen  goto 16
+	whileSen  goto 17
+	readSen  goto 18
+	writeSen  goto 19
+
+
+state 52
+	condition : expr RELOPERATOR . expr
+
+	'+'  shift 23
+	'-'  shift 24
+	IDENTIFIER  shift 25
+	UINT  shift 26
+	LP  shift 28
+
+	factor  goto 29
+	expr  goto 73
+	item  goto 32
 
 
 state 53
-	moreFactor : MULOPERATOR . factor moreFactor
-	moreFactor : MULOPERATOR . factor
+	moreItem : ADDOPERATOR . item
+	moreItem : ADDOPERATOR . item moreItem
 
 	IDENTIFIER  shift 25
 	UINT  shift 26
 	LP  shift 28
 
-	factor  goto 74
+	factor  goto 29
+	item  goto 74
 
 
 state 54
-	item : factor moreFactor .  (35)
+	expr : item moreItem .  (29)
 
-	.  reduce 35
+	.  reduce 29
 
 
 state 55
@@ -669,17 +669,17 @@ state 55
 
 	sentence  goto 75
 	assignSen  goto 13
-	conditionSen  goto 14
-	whileSen  goto 15
-	readSen  goto 16
-	writeSen  goto 17
-	reuniteSen  goto 18
-	proCallSen  goto 19
+	reuniteSen  goto 14
+	proCallSen  goto 15
+	conditionSen  goto 16
+	whileSen  goto 17
+	readSen  goto 18
+	writeSen  goto 19
 
 
 state 56
-	moreSentence : SEMICOLON . sentence moreSentence
 	moreSentence : SEMICOLON . sentence
+	moreSentence : SEMICOLON . sentence moreSentence
 	sentence : .  (27)
 
 	IDENTIFIER  shift 1
@@ -693,12 +693,12 @@ state 56
 
 	sentence  goto 76
 	assignSen  goto 13
-	conditionSen  goto 14
-	whileSen  goto 15
-	readSen  goto 16
-	writeSen  goto 17
-	reuniteSen  goto 18
-	proCallSen  goto 19
+	reuniteSen  goto 14
+	proCallSen  goto 15
+	conditionSen  goto 16
+	whileSen  goto 17
+	readSen  goto 18
+	writeSen  goto 19
 
 
 state 57
@@ -758,12 +758,12 @@ state 62
 
 	sentence  goto 84
 	assignSen  goto 13
-	conditionSen  goto 14
-	whileSen  goto 15
-	readSen  goto 16
-	writeSen  goto 17
-	reuniteSen  goto 18
-	proCallSen  goto 19
+	reuniteSen  goto 14
+	proCallSen  goto 15
+	conditionSen  goto 16
+	whileSen  goto 17
+	readSen  goto 18
+	writeSen  goto 19
 
 
 state 63
@@ -786,16 +786,16 @@ state 64
 	WRITE  shift 8
 	.  reduce 27
 
-	sentence  goto 10
-	constDec  goto 11
 	partProg  goto 85
+	sentence  goto 11
+	constDec  goto 12
 	assignSen  goto 13
-	conditionSen  goto 14
-	whileSen  goto 15
-	readSen  goto 16
-	writeSen  goto 17
-	reuniteSen  goto 18
-	proCallSen  goto 19
+	reuniteSen  goto 14
+	proCallSen  goto 15
+	conditionSen  goto 16
+	whileSen  goto 17
+	readSen  goto 18
+	writeSen  goto 19
 
 
 state 65
@@ -840,57 +840,57 @@ state 70
 	.  reduce 38
 
 
+71: reduce-reduce conflict (reduce 39, reduce 41) on $end
+71: reduce-reduce conflict (reduce 39, reduce 41) on ';'
+71: reduce-reduce conflict (reduce 39, reduce 41) on ADDOPERATOR
+71: reduce-reduce conflict (reduce 39, reduce 41) on RELOPERATOR
+71: reduce-reduce conflict (reduce 39, reduce 41) on THEN
+71: reduce-reduce conflict (reduce 39, reduce 41) on DO
+71: reduce-reduce conflict (reduce 39, reduce 41) on END
+71: reduce-reduce conflict (reduce 39, reduce 41) on COMMA
+71: reduce-reduce conflict (reduce 39, reduce 41) on SEMICOLON
+71: reduce-reduce conflict (reduce 39, reduce 41) on RP
 state 71
-	condition : expr RELOPERATOR expr .  (42)
+	moreFactor : MULOPERATOR factor . moreFactor
+	moreFactor : MULOPERATOR factor .  (39)
+	moreFactor : .  (41)
 
-	.  reduce 42
+	MULOPERATOR  shift 49
+	.  reduce 39
+
+	moreFactor  goto 87
 
 
-72: reduce-reduce conflict (reduce 32, reduce 34) on $end
-72: reduce-reduce conflict (reduce 32, reduce 34) on ';'
-72: reduce-reduce conflict (reduce 32, reduce 34) on RELOPERATOR
-72: reduce-reduce conflict (reduce 32, reduce 34) on THEN
-72: reduce-reduce conflict (reduce 32, reduce 34) on DO
-72: reduce-reduce conflict (reduce 32, reduce 34) on END
-72: reduce-reduce conflict (reduce 32, reduce 34) on COMMA
-72: reduce-reduce conflict (reduce 32, reduce 34) on SEMICOLON
-72: reduce-reduce conflict (reduce 32, reduce 34) on RP
 state 72
-	moreItem : ADDOPERATOR item .  (32)
-	moreItem : ADDOPERATOR item . moreItem
-	moreItem : .  (34)
-
-	ADDOPERATOR  shift 50
-	.  reduce 32
-
-	moreItem  goto 87
-
-
-state 73
 	conditionSen : IF condition THEN sentence .  (44)
 
 	.  reduce 44
 
 
-74: reduce-reduce conflict (reduce 39, reduce 41) on $end
-74: reduce-reduce conflict (reduce 39, reduce 41) on ';'
-74: reduce-reduce conflict (reduce 39, reduce 41) on ADDOPERATOR
-74: reduce-reduce conflict (reduce 39, reduce 41) on RELOPERATOR
-74: reduce-reduce conflict (reduce 39, reduce 41) on THEN
-74: reduce-reduce conflict (reduce 39, reduce 41) on DO
-74: reduce-reduce conflict (reduce 39, reduce 41) on END
-74: reduce-reduce conflict (reduce 39, reduce 41) on COMMA
-74: reduce-reduce conflict (reduce 39, reduce 41) on SEMICOLON
-74: reduce-reduce conflict (reduce 39, reduce 41) on RP
+state 73
+	condition : expr RELOPERATOR expr .  (42)
+
+	.  reduce 42
+
+
+74: reduce-reduce conflict (reduce 32, reduce 34) on $end
+74: reduce-reduce conflict (reduce 32, reduce 34) on ';'
+74: reduce-reduce conflict (reduce 32, reduce 34) on RELOPERATOR
+74: reduce-reduce conflict (reduce 32, reduce 34) on THEN
+74: reduce-reduce conflict (reduce 32, reduce 34) on DO
+74: reduce-reduce conflict (reduce 32, reduce 34) on END
+74: reduce-reduce conflict (reduce 32, reduce 34) on COMMA
+74: reduce-reduce conflict (reduce 32, reduce 34) on SEMICOLON
+74: reduce-reduce conflict (reduce 32, reduce 34) on RP
 state 74
-	moreFactor : MULOPERATOR factor . moreFactor
-	moreFactor : MULOPERATOR factor .  (39)
-	moreFactor : .  (41)
+	moreItem : ADDOPERATOR item .  (32)
+	moreItem : ADDOPERATOR item . moreItem
+	moreItem : .  (34)
 
-	MULOPERATOR  shift 53
-	.  reduce 39
+	ADDOPERATOR  shift 53
+	.  reduce 32
 
-	moreFactor  goto 88
+	moreItem  goto 88
 
 
 state 75
@@ -901,8 +901,8 @@ state 75
 
 76: reduce-reduce conflict (reduce 48, reduce 50) on END
 state 76
-	moreSentence : SEMICOLON sentence . moreSentence
 	moreSentence : SEMICOLON sentence .  (48)
+	moreSentence : SEMICOLON sentence . moreSentence
 	moreSentence : .  (50)
 
 	SEMICOLON  shift 56
@@ -931,8 +931,8 @@ state 79
 
 
 state 80
-	moreExpr : COMMA . expr moreExpr
 	moreExpr : COMMA . expr
+	moreExpr : COMMA . expr moreExpr
 
 	'+'  shift 23
 	'-'  shift 24
@@ -940,9 +940,9 @@ state 80
 	UINT  shift 26
 	LP  shift 28
 
+	factor  goto 29
 	expr  goto 92
-	item  goto 30
-	factor  goto 32
+	item  goto 32
 
 
 state 81
@@ -986,15 +986,15 @@ state 86
 
 
 state 87
-	moreItem : ADDOPERATOR item moreItem .  (33)
-
-	.  reduce 33
-
-
-state 88
 	moreFactor : MULOPERATOR factor moreFactor .  (40)
 
 	.  reduce 40
+
+
+state 88
+	moreItem : ADDOPERATOR item moreItem .  (33)
+
+	.  reduce 33
 
 
 state 89
@@ -1024,8 +1024,8 @@ state 91
 
 92: reduce-reduce conflict (reduce 53, reduce 55) on RP
 state 92
-	moreExpr : COMMA expr . moreExpr
 	moreExpr : COMMA expr .  (53)
+	moreExpr : COMMA expr . moreExpr
 	moreExpr : .  (55)
 
 	COMMA  shift 80
@@ -1053,8 +1053,8 @@ state 95
 
 
 state 96
-	moreProDec : ';' . proDec
 	moreProDec : ';' . proDec moreProDec
+	moreProDec : ';' . proDec
 
 	PROCEDURE  shift 61
 
@@ -1083,8 +1083,8 @@ state 99
 100: shift-reduce conflict (shift 96, reduce 17) on ';'
 100: shift-reduce conflict (shift 96, reduce 19) on ';'
 state 100
-	moreProDec : ';' proDec .  (17)
 	moreProDec : ';' proDec . moreProDec
+	moreProDec : ';' proDec .  (17)
 	moreProDec : .  (19)
 
 	';'  shift 96
@@ -1119,8 +1119,8 @@ Symbols never pushed
 ##############################################################################
 
 State 66 contains 1 reduce-reduce conflict(s)
-State 72 contains 9 reduce-reduce conflict(s)
-State 74 contains 10 reduce-reduce conflict(s)
+State 71 contains 10 reduce-reduce conflict(s)
+State 74 contains 9 reduce-reduce conflict(s)
 State 76 contains 1 reduce-reduce conflict(s)
 State 85 contains 1 shift-reduce conflict(s)
 State 90 contains 2 reduce-reduce conflict(s)

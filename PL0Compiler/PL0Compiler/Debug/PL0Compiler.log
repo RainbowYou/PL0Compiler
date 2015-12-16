@@ -1,16 +1,31 @@
-﻿Build started 2015/12/7 17:24:23.
+﻿Build started 2015/12/16 21:22:06.
      1>Project "C:\Users\煜\Documents\Visual Studio 2013\Projects\PL0Compiler\PL0Compiler\PL0Compiler\PL0Compiler.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         F:\Program Files (x86)Microsoft\Visual Studio\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D YYDEBUG /D _CRT_SECURE_NO_WARNINGS /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MTd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt main.cpp symbol.cpp
-         symbol.cpp
-         main.cpp
+         F:\Program Files (x86)Microsoft\Visual Studio\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D YYDEBUG /D _CRT_SECURE_NO_WARNINGS /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MTd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt ..\SyntaxAnalyzer\syntaxAnalyzer.cpp ..\SyntaxAnalyzer\wordAnalyzer.cpp
+         wordAnalyzer.cpp
+     1>c:\users\煜\documents\visual studio 2013\projects\pl0compiler\pl0compiler\syntaxanalyzer\syntaxanalyzer.h(46): warning C4005: 'BEGIN' : macro redefinition
+                 c:\program files (x86)\parser generator 2\cpp\include\yywclex.h(250) : see previous definition of 'BEGIN'
+         syntaxAnalyzer.cpp
+     1>c:\users\煜\documents\visual studio 2013\projects\pl0compiler\pl0compiler\syntaxanalyzer\syntaxanalyzer.h(46): warning C4005: 'BEGIN' : macro redefinition
+                 c:\program files (x86)\parser generator 2\cpp\include\yywclex.h(250) : see previous definition of 'BEGIN'
          Generating Code...
        Link:
-         F:\Program Files (x86)Microsoft\Visual Studio\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\煜\Documents\Visual Studio 2013\Projects\PL0Compiler\PL0Compiler\Debug\PL0Compiler.exe" /INCREMENTAL /NOLOGO ylmtd.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\煜\Documents\Visual Studio 2013\Projects\PL0Compiler\PL0Compiler\Debug\PL0Compiler.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\煜\Documents\Visual Studio 2013\Projects\PL0Compiler\PL0Compiler\Debug\PL0Compiler.lib" /MACHINE:X86 Debug\main.obj
+         F:\Program Files (x86)Microsoft\Visual Studio\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\煜\Documents\Visual Studio 2013\Projects\PL0Compiler\PL0Compiler\Debug\PL0Compiler.exe" /INCREMENTAL /NOLOGO ylmtd.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\煜\Documents\Visual Studio 2013\Projects\PL0Compiler\PL0Compiler\Debug\PL0Compiler.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\煜\Documents\Visual Studio 2013\Projects\PL0Compiler\PL0Compiler\Debug\PL0Compiler.lib" /MACHINE:X86 Debug\syntaxAnalyzer.obj
+         Debug\wordAnalyzer.obj
+         Debug\main.obj
          Debug\symbol.obj
-         PL0Compiler.vcxproj -> C:\Users\煜\Documents\Visual Studio 2013\Projects\PL0Compiler\PL0Compiler\Debug\PL0Compiler.exe
-     1>Done Building Project "C:\Users\煜\Documents\Visual Studio 2013\Projects\PL0Compiler\PL0Compiler\PL0Compiler\PL0Compiler.vcxproj" (Build target(s)).
+     1>LIBCMTD.lib(stdexcpt.obj) : error LNK2005: "public: __thiscall std::bad_cast::bad_cast(class std::bad_cast const &)" (??0bad_cast@std@@QAE@ABV01@@Z) already defined in ylmtd.lib(yywcpp.obj)
+     1>LIBCMTD.lib(stdexcpt.obj) : error LNK2005: "public: __thiscall std::bad_cast::bad_cast(char const *)" (??0bad_cast@std@@QAE@PBD@Z) already defined in ylmtd.lib(yywcpp.obj)
+     1>LIBCMTD.lib(stdexcpt.obj) : error LNK2005: "public: virtual __thiscall std::bad_cast::~bad_cast(void)" (??1bad_cast@std@@UAE@XZ) already defined in ylmtd.lib(yywcpp.obj)
+     1>syntaxAnalyzer.obj : error LNK2001: unresolved external symbol "public: virtual void __thiscall yl::yywparser::yyerror(wchar_t const *)" (?yyerror@yywparser@yl@@UAEXPB_W@Z)
+     1>wordAnalyzer.obj : error LNK2001: unresolved external symbol "public: virtual void __thiscall yl::yywlexer::yyerror(wchar_t const *)" (?yyerror@yywlexer@yl@@UAEXPB_W@Z)
+     1>ylmtd.lib(yywcpp.obj) : error LNK2019: unresolved external symbol "public: __thiscall std::ios_base::Init::Init(void)" (??0Init@ios_base@std@@QAE@XZ) referenced in function _$E14
+     1>ylmtd.lib(yywcpp.obj) : error LNK2019: unresolved external symbol "public: __thiscall std::ios_base::Init::~Init(void)" (??1Init@ios_base@std@@QAE@XZ) referenced in function _$E15
+     1>ylmtd.lib(yywcpp.obj) : error LNK2019: unresolved external symbol "public: bool __thiscall std::locale::_Iscloc(void)const " (?_Iscloc@locale@std@@QBE_NXZ) referenced in function "class std::ctype<unsigned short> const & __cdecl std::use_facet(class std::locale const &,class std::ctype<unsigned short> const *,bool)" (?use_facet@std@@YAABV?$ctype@G@1@ABVlocale@1@PBV21@_N@Z)
+     1>ylmtd.lib(yywcpp.obj) : error LNK2019: unresolved external symbol "public: class std::locale::facet const * __thiscall std::locale::_Getfacet(unsigned int,bool)const " (?_Getfacet@locale@std@@QBEPBVfacet@12@I_N@Z) referenced in function "class std::ctype<unsigned short> const & __cdecl std::use_facet(class std::locale const &,class std::ctype<unsigned short> const *,bool)" (?use_facet@std@@YAABV?$ctype@G@1@ABVlocale@1@PBV21@_N@Z)
+     1>C:\Users\煜\Documents\Visual Studio 2013\Projects\PL0Compiler\PL0Compiler\Debug\PL0Compiler.exe : fatal error LNK1120: 6 unresolved externals
+     1>Done Building Project "C:\Users\煜\Documents\Visual Studio 2013\Projects\PL0Compiler\PL0Compiler\PL0Compiler\PL0Compiler.vcxproj" (Build target(s)) -- FAILED.
 
-Build succeeded.
+Build FAILED.
 
-Time Elapsed 00:00:01.42
+Time Elapsed 00:00:06.24

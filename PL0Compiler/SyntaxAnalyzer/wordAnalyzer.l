@@ -48,7 +48,7 @@ relOperator ["="| "<>" | "<" | "<=" | ">" | ">="]
 %}
 
 
-{uint} {yylval=installNumber();return UINT;}
+{uint} {/*yylval=installNumber();*/return UINT;}
 {addOperator} {return ADDOPERATOR;}
 {mulOperator} {return MULOPERATOR;}
 {relOperator} {return RELOPERATOR;}
@@ -68,7 +68,7 @@ end {return END;}
 read {return READ;}
 write {return WRITE;}
 
-{identifier} {yylval=installID();return IDENTIFIER;}
+{identifier} {/*yylval=installID();*/return IDENTIFIER;}
 
 "," {return COMMA;}
 ";" {return SEMICOLON;}

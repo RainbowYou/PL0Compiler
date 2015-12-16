@@ -19,7 +19,7 @@
 * C++ source file generated from wordAnalyzer.l.
 * 
 * Date: 12/16/15
-* Time: 20:55:23
+* Time: 21:21:59
 * 
 * ALex Version: 2.07
 ****************************************************************************/
@@ -154,7 +154,7 @@ yywint_t YYLEXERNAME::yyaction(int action)
 	case 1:
 		{
 #line 51 ".\\wordAnalyzer.l"
-yylval=installNumber();return UINT;
+/*yylval=installNumber();*/return UINT;
 #line 159 "wordAnalyzer.cpp"
 		}
 		break;
@@ -280,7 +280,7 @@ return WRITE;
 	case 19:
 		{
 #line 71 ".\\wordAnalyzer.l"
-yylval=installID();return IDENTIFIER;
+/*yylval=installID();*/return IDENTIFIER;
 #line 285 "wordAnalyzer.cpp"
 		}
 		break;
