@@ -1,18 +1,12 @@
 %{
-/****************************************************************************
-syntaxAnalyzer.y
-ParserWizard generated YACC file.
-
-Date: 2015年12月14日
-****************************************************************************/
+/*Date: 2015锟斤拷12锟斤拷14锟斤拷*/
 #include <iostream>
 #include <cstring>
 #include "wordAnalyzer.h"
 %}
 
-/////////////////////////////////////////////////////////////////////////////
 // declarations section
-%token IDENTIFIER UINT DIGIT LETTER ADDOPERATOR MULOPERATOR RELOPERATOR 
+%token IDENTIFIER UINT ADDOPERATOR MULOPERATOR RELOPERATOR 
 		CONST VAR PROCEDURE ODD IF THEN WHILE DO CALL BEGIN END READ WRITE
 		COMMA SEMICOLON EQUAL ASSIGN PLUS MINUS LP RP
 // parser name
@@ -44,12 +38,11 @@ Date: 2015年12月14日
 
 %%
 
-/////////////////////////////////////////////////////////////////////////////
 // rules section
 
 // YACC Rules
 
-Grammar
+//Grammar
 	prog: partProg
 	; 
 	partProg: sentence
@@ -57,24 +50,26 @@ Grammar
 	| constDec varDec sentence
 	| constDec varDec proDec sentence 
 	;
-	constDec: CONST constDef moreoConstDef SEMICOLON
+	constDec: CONST constDef moreConstDef ';'
 	;
 	moreConstDef: COMMA constDef
 	| COMMA constDef moreConstDef
 	|
 	;
-	constDef: IDENTIFIER EQUAL UINT {$$=$3;}
+	constDef: IDENTIFIER '=' UINT
 	;
-	varDec: VAR IDENTIFIER moreIdentifier SEMICOLON
+	varDec: VAR IDENTIFIER moreIdentifier ';'
 	;
 	moreIdentifier: COMMA IDENTIFIER
 	|COMMA IDENTIFIER moreIdentifier
 	|
 	;
-	proDec: proHead partProg moreProDec SEMICOLON
-	proHead: PROCEDURE IDENTIFIER SEMICOLON
-	moreProDec: SEMICOLON proDec
-	| SEMICOLON proDec moreProDec
+	proDec: proHead partProg moreProDec ';'
+	;
+	proHead: PROCEDURE IDENTIFIER ';'
+	;
+	moreProDec: ';' proDec
+	| ';' proDec moreProDec
 	|
 	;
 	sentence: assignSen
@@ -86,11 +81,11 @@ Grammar
 	| writeSen
 	|
 	;
-	assignSen: IDENTIFIER ASSIGN expr {$1=$3;}
+	assignSen: IDENTIFIER ASSIGN expr
 	;
 	expr: item moreItem
-	| PLUS item moreItem
-	| MINUS item moreItem
+	| '+' item moreItem
+	| '-' item moreItem
 	;
 	moreItem: ADDOPERATOR item
 	| ADDOPERATOR item moreItem
@@ -103,10 +98,10 @@ Grammar
 	| LP expr RP
 	;
 	moreFactor: MULOPERATOR factor
-	| MULOPERATOR factor
+	| MULOPERATOR factor moreFactor
 	|
 	;
-	contidition: expr RELOPERATOR expr
+	condition: expr RELOPERATOR expr
 	| ODD expr
 	;
 	conditionSen: IF condition THEN sentence
@@ -114,6 +109,7 @@ Grammar
 	whileSen: WHILE condition DO sentence
 	;
 	proCallSen: CALL IDENTIFIER
+	;
 	reuniteSen: BEGIN sentence moreSentence END
 	;
 	moreSentence: SEMICOLON sentence
@@ -132,7 +128,6 @@ Grammar
 
 %%
 
-/////////////////////////////////////////////////////////////////////////////
 // programs section
 
 int main(void)
