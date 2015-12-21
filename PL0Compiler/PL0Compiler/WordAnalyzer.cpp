@@ -1,10 +1,11 @@
 #include "WordAnalyzer.h"
 #include "Symbol.h"
 
-//WordAnalyzer::WordAnalyzer()
-//{
-//
-//}
+WordAnalyzer::WordAnalyzer()
+{
+	token = "";
+	symbol = "";
+}
 
 WordAnalyzer::~WordAnalyzer()
 {
@@ -21,12 +22,19 @@ int WordAnalyzer::getType()
 	return type;
 }
 
-void WordAnalyzer::setSymbol(char s)
+void WordAnalyzer::setSymbol(char* s)
 {
-	symbol = s;
+	//strcpy(symbol, s);
+	int len = strlen(s);
+	symbol = new char[len+1];
+	for (int i = 0; i < len; i++)
+	{
+		symbol[i] = s[i];
+	}
+	symbol[len] = '\0';
 }
 
-char WordAnalyzer::getSymbol()
+char* WordAnalyzer::getSymbol()
 {
 	return symbol;
 }
@@ -43,34 +51,70 @@ int WordAnalyzer::getNum()
 
 void WordAnalyzer::setToken(char* t)
 {
-	strcpy(token, t);
+	//strcpy(token, t);
+	int len = strlen(t);
+	token = new char[len + 1];
+	for (int i = 0; i < len; i++)
+	{
+		token[i] = t[i];
+	}
+	token[len] = '\0';
 }
 
-char* WordAnalyzer::getToken()
+string WordAnalyzer::getToken()
 {
-	return token;
+	string str(token);
+	return str;
 }
 
-bool WordAnalyzer::isMulOperator(char c)
+bool WordAnalyzer::isMulOperator()
 {
-	if (c == '*' || c == '/') 
-		return true;
-
+	int length = strlen(symbol);
+	if (length == 1)
+	{
+		if ((*symbol == '*') || (*symbol == '/'))
+			return true;
+		return false;
+	}
 	return false;
 }
 
-bool WordAnalyzer::isPlusOperator(char c)
+bool WordAnalyzer::isPlusOperator()
 {
-	if (c == '+' || c == '-') 
-		return true;
-
+	int length = strlen(symbol);
+	if (length == 1)
+	{
+		if ((*symbol == '+') || (*symbol == '-'))
+			return true;
+		return false;
+	}
 	return false;
 }
 
-bool WordAnalyzer::isRelOperator(char c)
+bool WordAnalyzer::isRelOperator()
 {
-	if (c == '=' || c == '<>' || c == '<' || c == '<=' || c == '>' || c == '>=') 
-		return true;
+	int length = strlen(symbol);
+	if (length == 1)
+	{
+		if (isEqual(*symbol) || (*symbol=='<') || (*symbol=='>'))
+		{
+			//type = RELATIONO;
+			return true;
+		}
+		return false;
+	}
+
+	else if (length == 2)
+	{
+		if (((*symbol == '<') && (*(symbol + 1) == '>')) || 
+			((*symbol == '<') && (*(symbol + 1) == '=')) || 
+			((*symbol == '>') && (*(symbol + 1) == '=')))
+		{
+			//type = RELATIONO;
+			return true;
+		}
+		return false;
+	}
 
 	return false;
 }
@@ -82,39 +126,69 @@ bool WordAnalyzer::isColon(char c)
 	return false;
 }
 
-
-bool WordAnalyzer::isAssign(char c)
+bool WordAnalyzer::isEqual(char c)
 {
-	if (c == '=')
-		return true;
+	if (c == '=') return true;
 	return false;
 }
 
-bool WordAnalyzer::isComma(char c)
+bool WordAnalyzer::isAssign()
 {
-	if (c == ',')
-		return true;
+	int length = strlen(symbol);
+	if (length == 2)
+	{
+		if (isColon(*symbol) && isEqual(*(symbol + 1)))
+			return true;
+		return false;
+	}
 	return false;
 }
 
-bool WordAnalyzer::isLP(char c)
+bool WordAnalyzer::isComma()
 {
-	if (c == '(')
-		return true;
+	int length = strlen(symbol);
+	if (length == 1)
+	{
+		if (*symbol == ',')
+			return true;
+		return false;
+	}
 	return false;
 }
 
-bool WordAnalyzer::isRP(char c)
+bool WordAnalyzer::isLP()
 {
-	if (c == ')')
-		return true;
+	int length = strlen(symbol);
+	if (length == 1)
+	{
+		if (*symbol == '(')
+			return true;
+		return false;
+	}
 	return false;
 }
 
-bool WordAnalyzer::isSemicolon(char c)
+bool WordAnalyzer::isRP()
 {
-	if (c == ';')
-		return true;
+	int length = strlen(symbol);
+	if (length == 1)
+	{
+		if (*symbol == ')')
+			return true;
+		return false;
+	}
+	return false;
+}
+
+bool WordAnalyzer::isSemicolon()
+{
+	int length = strlen(symbol);
+	if (length == 1)
+	{
+		if (*symbol == ';')
+			return true;
+		return false;
+	}
 	return false;
 }
 
@@ -132,46 +206,124 @@ bool WordAnalyzer::isDigit(char c)
 	return false;
 }
 
+bool WordAnalyzer::isKeywords(string str,int* t)
+{
+	for (int i = 0; i < keywordsLen; i++)
+	{
+		if (str == keywords[i])
+		{
+			*t = i;
+			return true;
+			break;
+		}
+	}
+	return false;
+}
+
 
 void WordAnalyzer::analyze()
 {
-	char c = getSymbol();
-	if (isLetter(c))
-	{
-
-	}
-
-	else if (isDigit(c))
-	{
-
-	}
-
-	else if (isPlusOperator(c))
+	if (isPlusOperator())
 	{
 		setType(PLUSO);
-		strcpy(token, &c);
+		setToken(symbol);
 	}
 
-	else if (isMulOperator(c))
+	else if (isMulOperator())
 	{
 		setType(MULTIPLYO);
-		strcpy(token, &c);
+		setToken(symbol);
 	}
 
-	else if (isRelOperator(c))
+	else if (isRelOperator())
 	{
 		setType(RELATIONO);
-		strcpy(token, &c);
+		setToken(symbol);
 	}
 
-	else if (isComma(c)) setType(COMMA);
+	else if (isComma())
+	{
+		setType(COMMA);
+		setToken(symbol);
+	}
 
-	else if (isSemicolon(c)) setType(SEMICOLON);
+	else if (isSemicolon())
+	{
+		setType(SEMICOLON);
+		setToken(symbol);
+	}
 
-	else if (isAssign(c)) setType(ASSIGN);
+	else if (isAssign())
+	{
+		setType(ASSIGN);
+		setToken(symbol);
+	}
 
-	else if (isLP(c)) setType(LP);
+	else if (isLP())
+	{
+		setType(LP);
+		setToken(symbol);
+	}
 
-	else if (isRP(c)) setType(RP);
+	else if (isRP())
+	{
+		setType(RP);
+		setToken(symbol);
+	}
+
+	else if (isLetter(*symbol))
+	{
+		int length = strlen(symbol);
+		bool flag = false;
+		for (int i = 1; i < length; i++)
+		{
+			if (isLetter(symbol[i]) || isDigit(symbol[i])) flag = true;
+			else { flag = false; break; }
+			//symbol++;
+		}
+
+		if (flag)
+		{
+			//Finding if identifier is keyword
+			string str(symbol);
+			int* t = new int(0);
+			if (isKeywords(str,t)) setType(*t);
+			else setType(IDENTIFIER);
+
+			setToken(symbol);
+		}
+		else //Not correct identifier ,token error !
+		{
+			//Error handler should be put here!
+		}
+	}
+
+	else if (isDigit(*symbol))
+	{
+		int length = strlen(symbol);
+		bool flag = false;
+		for (int i = 1; i < length; i++)
+		{
+			if (isDigit(symbol[i])) flag == true;
+
+			else 
+			{
+				flag = false;
+				break;
+			}
+			//symbol++;
+		}
+
+		if (flag)
+		{
+			setType(UINT);
+			//Transfer string to integer
+			setNum((*symbol) - '\0');
+		}
+		else //Not integer,token error!
+		{
+			//Error handler should be put here!
+		}
+	}
 
 }

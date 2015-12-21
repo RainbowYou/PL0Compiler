@@ -9,10 +9,10 @@
 class WordAnalyzer
 {
 private:
-	int type;
-	int num;
-	char* token;
-	char symbol;
+	int type;//词法单元的类型
+	int num;//存储整型数
+	char* token;//存储的词法单元（即单词值)
+	char* symbol;//当前读入的字符串
 
 public:
 	void setType(int t);
@@ -20,30 +20,30 @@ public:
 	void setNum(int n);
 	int getNum();
 	void setToken(char* t);
-	char* getToken();
-	void setSymbol(char s);
-	char getSymbol();
+	string getToken();
+	void setSymbol(char* s);
+	char* getSymbol();
 
 public:
-	//WordAnalyzer();//constructor
+	WordAnalyzer();//constructor
 	//WordAnalyzer();
 	~WordAnalyzer();//destructor
 
-	bool isPlusOperator(char c);
-	bool isMulOperator(char c);
-	bool isRelOperator(char c);
-	bool isComma(char c);
+	bool isPlusOperator();
+	bool isMulOperator();
+	bool isRelOperator();
+	bool isComma();
 	bool isColon(char c);
-	bool isSemicolon(char c);
-	//bool isEqual(char c);
-	bool isAssign(char c);
-	bool isLP(char c);
-	bool isRP(char c);
-
-	
+	bool isSemicolon();
+	bool isEqual(char c);
+	bool isAssign();
+	bool isLP();
+	bool isRP();
 
 	bool isLetter(char c);
 	bool isDigit(char c);
+
+	bool isKeywords(string str,int* t);
 
 	void analyze();
 };

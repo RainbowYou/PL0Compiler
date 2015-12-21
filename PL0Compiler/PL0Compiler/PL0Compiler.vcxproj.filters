@@ -13,6 +13,12 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Test Files">
+      <UniqueIdentifier>{16c6660a-8599-4a10-a695-ed33d190b484}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Test Files\Source">
+      <UniqueIdentifier>{fbca4771-6f51-43fe-b52c-085f9c6d18cc}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -29,5 +35,16 @@
     <ClInclude Include="Symbol.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="test2.txt">
+      <Filter>Test Files\Source</Filter>
+    </Text>
+    <Text Include="test3.txt">
+      <Filter>Test Files\Source</Filter>
+    </Text>
+    <Text Include="test1.txt">
+      <Filter>Test Files\Source</Filter>
+    </Text>
   </ItemGroup>
 </Project>
