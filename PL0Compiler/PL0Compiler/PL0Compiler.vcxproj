@@ -88,15 +88,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\SyntaxAnalyzer\syntaxAnalyzer.cpp" />
-    <ClCompile Include="..\SyntaxAnalyzer\wordAnalyzer.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="symbol.cpp" />
+    <ClCompile Include="WordAnalyzer.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\SyntaxAnalyzer\syntaxAnalyzer.h" />
-    <ClInclude Include="..\SyntaxAnalyzer\wordAnalyzer.h" />
     <ClInclude Include="Symbol.h" />
+    <ClInclude Include="WordAnalyzer.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

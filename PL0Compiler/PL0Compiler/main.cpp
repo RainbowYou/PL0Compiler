@@ -1,7 +1,7 @@
-//#include <iostream>
-//
-//
-//int main(void)
-//{
-//
-//}
+#include <iostream>
+#include"WordAnalyzer.h"
+
+int main(void)
+{
+
+}
