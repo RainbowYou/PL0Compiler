@@ -1,20 +1,25 @@
 [Application]
-WindowPlacement=2 3 -32000 -32000 -1 -1 104 104 1129 637
+WindowPlacement=2 3 -32000 -32000 -1 -1 21 59 1046 743
 [Editor1]
 FileName=.\syntaxAnalyzer.y
 ReadOnly=0
-WindowPlacement1=0 1 -1 -1 -1 -1 0 0 691 640
-WindowOrder1=2
-Position001=0 6
-Cursor001=40 66 40 66
+WindowPlacement1=0 1 -1 -1 -1 -1 668 0 1359 672
+WindowOrder1=3
+Position001=0 1
+Cursor001=13 25 13 25
 SyntaxColouring=2
 TargetSyntaxColouring=3
 [Editor2]
 FileName=.\wordAnalyzer.l
 ReadOnly=0
-WindowPlacement1=0 1 -1 -1 -8 -31 697 -5 1360 642
-WindowOrder1=1
-Position001=0 69
-Cursor001=23 101 23 101
+WindowPlacement1=0 1 -1 -1 -8 -31 0 0 669 673
+WindowOrder1=2
+Position001=0 40
+Cursor001=2 74 2 74
 SyntaxColouring=1
 TargetSyntaxColouring=3
+[Output]
+WindowPlacement1=2 3 -1 -1 -8 -31 104 104 1262 572
+WindowOrder1=1
+Position1=0 1
+Cursor1=109 29 109 29

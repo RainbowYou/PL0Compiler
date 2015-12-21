@@ -1,10 +1,10 @@
 #include "WordAnalyzer.h"
 #include "Symbol.h"
 
-WordAnalyzer::WordAnalyzer()
-{
-
-}
+//WordAnalyzer::WordAnalyzer()
+//{
+//
+//}
 
 WordAnalyzer::~WordAnalyzer()
 {
@@ -130,4 +130,48 @@ bool WordAnalyzer::isDigit(char c)
 	if (c > '0' && c < '9')
 		return true;
 	return false;
+}
+
+
+void WordAnalyzer::analyze()
+{
+	char c = getSymbol();
+	if (isLetter(c))
+	{
+
+	}
+
+	else if (isDigit(c))
+	{
+
+	}
+
+	else if (isPlusOperator(c))
+	{
+		setType(PLUSO);
+		strcpy(token, &c);
+	}
+
+	else if (isMulOperator(c))
+	{
+		setType(MULTIPLYO);
+		strcpy(token, &c);
+	}
+
+	else if (isRelOperator(c))
+	{
+		setType(RELATIONO);
+		strcpy(token, &c);
+	}
+
+	else if (isComma(c)) setType(COMMA);
+
+	else if (isSemicolon(c)) setType(SEMICOLON);
+
+	else if (isAssign(c)) setType(ASSIGN);
+
+	else if (isLP(c)) setType(LP);
+
+	else if (isRP(c)) setType(RP);
+
 }

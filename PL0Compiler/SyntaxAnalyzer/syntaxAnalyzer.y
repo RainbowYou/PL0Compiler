@@ -8,7 +8,7 @@
 // declarations section
 %token IDENTIFIER UINT ADDOPERATOR MULOPERATOR RELOPERATOR 
 		CONST VAR PROCEDURE ODD IF THEN WHILE DO CALL BEGIN END READ WRITE
-		COMMA SEMICOLON EQUAL ASSIGN PLUS MINUS LP RP
+		COMMA SEMICOLON ASSIGN LP RP
 // parser name
 %name syntaxAnalyzer
 
@@ -50,7 +50,7 @@
 	| constDec varDec sentence
 	| constDec varDec proDec sentence 
 	;
-	constDec: CONST constDef moreConstDef ';'
+	constDec: CONST constDef moreConstDef SEMICOLON
 	;
 	moreConstDef: COMMA constDef
 	| COMMA constDef moreConstDef
@@ -58,18 +58,18 @@
 	;
 	constDef: IDENTIFIER '=' UINT
 	;
-	varDec: VAR IDENTIFIER moreIdentifier ';'
+	varDec: VAR IDENTIFIER moreIdentifier SEMICOLON
 	;
 	moreIdentifier: COMMA IDENTIFIER
 	|COMMA IDENTIFIER moreIdentifier
 	|
 	;
-	proDec: proHead partProg moreProDec ';'
+	proDec: proHead partProg moreProDec SEMICOLON
 	;
-	proHead: PROCEDURE IDENTIFIER ';'
+	proHead: PROCEDURE IDENTIFIER SEMICOLON
 	;
-	moreProDec: ';' proDec
-	| ';' proDec moreProDec
+	moreProDec: SEMICOLON proDec
+	| SEMICOLON proDec moreProDec
 	|
 	;
 	sentence: assignSen

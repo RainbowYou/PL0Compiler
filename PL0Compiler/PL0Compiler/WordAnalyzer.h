@@ -5,7 +5,6 @@
 #include<cstring>
 #include<string>
 #include"Symbol.h"
-using namespace std;
 
 class WordAnalyzer
 {
@@ -26,7 +25,7 @@ public:
 	char getSymbol();
 
 public:
-	WordAnalyzer();//constructor
+	//WordAnalyzer();//constructor
 	//WordAnalyzer();
 	~WordAnalyzer();//destructor
 
@@ -41,9 +40,12 @@ public:
 	bool isLP(char c);
 	bool isRP(char c);
 
+	
+
 	bool isLetter(char c);
 	bool isDigit(char c);
 
+	void analyze();
 };
 
 

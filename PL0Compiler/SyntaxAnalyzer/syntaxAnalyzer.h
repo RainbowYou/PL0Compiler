@@ -1,7 +1,7 @@
 /****************************************************************************
 *                     U N R E G I S T E R E D   C O P Y
 * 
-* You are on day 10 of your 30 day trial period.
+* You are on day 11 of your 30 day trial period.
 * 
 * This file was produced by an UNREGISTERED COPY of Parser Generator. It is
 * for evaluation purposes only. If you continue to use Parser Generator 30
@@ -19,7 +19,7 @@
 * C++ header file generated from syntaxAnalyzer.y.
 * 
 * Date: 12/16/15
-* Time: 21:21:59
+* Time: 21:53:01
 * 
 * AYACC Version: 2.07
 ****************************************************************************/
@@ -49,12 +49,9 @@
 #define WRITE 65554
 #define COMMA 65555
 #define SEMICOLON 65556
-#define EQUAL 65557
-#define ASSIGN 65558
-#define PLUS 65559
-#define MINUS 65560
-#define LP 65561
-#define RP 65562
+#define ASSIGN 65557
+#define LP 65558
+#define RP 65559
 /////////////////////////////////////////////////////////////////////////////
 // syntaxAnalyzer
 
@@ -91,7 +88,7 @@ public:
 
 	// place any extra class members here
 
-#line 95 "syntaxAnalyzer.h"
+#line 92 "syntaxAnalyzer.h"
 };
 
 #ifndef YYPARSERNAME
@@ -104,5 +101,5 @@ public:
 #define YYSTYPE int
 #endif
 
-#line 108 "syntaxAnalyzer.h"
+#line 105 "syntaxAnalyzer.h"
 #endif
