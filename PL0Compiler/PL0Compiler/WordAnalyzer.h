@@ -15,6 +15,10 @@ private:
 	char* symbol;//当前读入的字符串
 
 public:
+	WordAnalyzer();//constructor
+	~WordAnalyzer();//destructor
+
+public:
 	void setType(int t);
 	int getType();
 	void setNum(int n);
@@ -24,11 +28,9 @@ public:
 	void setSymbol(char* s);
 	char* getSymbol();
 
-public:
-	WordAnalyzer();//constructor
-	//WordAnalyzer();
-	~WordAnalyzer();//destructor
+	void analyze();
 
+private:
 	bool isPlusOperator();
 	bool isMulOperator();
 	bool isRelOperator();
@@ -43,9 +45,8 @@ public:
 	bool isLetter(char c);
 	bool isDigit(char c);
 
-	bool isKeywords(string str,int* t);
+	bool isKeywords(string str,int* t);//Finding if a token is keyword
 
-	void analyze();
 };
 
 

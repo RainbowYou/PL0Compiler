@@ -9,7 +9,8 @@ WordAnalyzer::WordAnalyzer()
 
 WordAnalyzer::~WordAnalyzer()
 {
-
+	delete token;
+	delete symbol;
 }
 
 void WordAnalyzer::setType(int t)
@@ -274,7 +275,7 @@ void WordAnalyzer::analyze()
 	else if (isLetter(*symbol))
 	{
 		int length = strlen(symbol);
-		bool flag = false;
+		bool flag = true;
 		for (int i = 1; i < length; i++)
 		{
 			if (isLetter(symbol[i]) || isDigit(symbol[i])) flag = true;
@@ -301,7 +302,7 @@ void WordAnalyzer::analyze()
 	else if (isDigit(*symbol))
 	{
 		int length = strlen(symbol);
-		bool flag = false;
+		bool flag = true;
 		for (int i = 1; i < length; i++)
 		{
 			if (isDigit(symbol[i])) flag == true;
