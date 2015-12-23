@@ -7,6 +7,7 @@ class SyntaxAnalyzer
 private:
 	WordAnalyzer wordAnalyzer;
 	char* symbol;
+
 public:
 	SyntaxAnalyzer();//constructor
 	~SyntaxAnalyzer();//destructor
@@ -40,6 +41,12 @@ private:
 	void repeatSentence();		//÷ÿ∏¥”Ôæ‰
 
 public:
+	void setSymbol(char* s);
+	char* getSymbol() const;
+
+	void setWordAnalyzer();
+	WordAnalyzer getWordAnalyzer() const;
+
 	void analyze();
 };
 

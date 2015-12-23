@@ -1,5 +1,11 @@
+#include <fstream>
 #include "WordAnalyzer.h"
 #include "Symbol.h"
+using namespace std;
+
+#pragma warning(disable : 4996)
+
+int WordAnalyzer::cur = -1;
 
 WordAnalyzer::WordAnalyzer()
 {
@@ -20,6 +26,24 @@ void WordAnalyzer::initialData()
 	setType(-1);
 }
 
+bool WordAnalyzer::fillSymbols()
+{
+	ifstream sourceFile("test1.txt", ios::in);
+
+	if (!sourceFile)
+	{
+		cerr << "File could not be opened!" << endl;
+		return false;
+	}
+
+	string c;
+	while (sourceFile >> c)
+	{
+		symbols.push_back(c);
+	}
+	return true;
+}
+
 void WordAnalyzer::setType(int t)
 {
 	type = t;
@@ -32,7 +56,6 @@ int WordAnalyzer::getType() const
 
 void WordAnalyzer::setSymbol(char* s)
 {
-	//strcpy(symbol, s);
 	int len = strlen(s);
 	symbol = new char[len+1];
 	for (int i = 0; i < len; i++)
@@ -42,10 +65,28 @@ void WordAnalyzer::setSymbol(char* s)
 	symbol[len] = '\0';
 }
 
-char* WordAnalyzer::getSymbol() const
+void WordAnalyzer::setSymbol()
 {
-	return symbol;
+	cur++;
+	//Analyzing complete!
+	if (cur > symbols.size()) exit(0);
+
+	string curSymbol = symbols[cur];
+	int length = curSymbol.length();
+
+	char* str = new char[length + 1];
+	curSymbol.copy(str, length, 0);
+
+	setSymbol(str);
+	analyze();
 }
+
+//
+//void WordAnalyzer::getSymbol()
+//{
+//	
+//}
+
 
 void WordAnalyzer::setNum(int n)
 {
@@ -59,7 +100,6 @@ int WordAnalyzer::getNum() const
 
 void WordAnalyzer::setToken(char* t)
 {
-	//strcpy(token, t);
 	int len = strlen(t);
 	token = new char[len + 1];
 	for (int i = 0; i < len; i++)
@@ -73,6 +113,12 @@ string WordAnalyzer::getToken() const
 {
 	string str(token);
 	return str;
+}
+
+void WordAnalyzer::back()
+{
+	cur--;
+	if (cur < 0) return;
 }
 
 bool WordAnalyzer::isMulOperator()
@@ -106,7 +152,6 @@ bool WordAnalyzer::isRelOperator()
 	{
 		if (isEqual(*symbol) || (*symbol=='<') || (*symbol=='>'))
 		{
-			//type = RELATIONO;
 			return true;
 		}
 		return false;
@@ -118,7 +163,6 @@ bool WordAnalyzer::isRelOperator()
 			((*symbol == '<') && (*(symbol + 1) == '=')) || 
 			((*symbol == '>') && (*(symbol + 1) == '=')))
 		{
-			//type = RELATIONO;
 			return true;
 		}
 		return false;
@@ -194,6 +238,18 @@ bool WordAnalyzer::isSemicolon()
 	if (length == 1)
 	{
 		if (*symbol == ';')
+			return true;
+		return false;
+	}
+	return false;
+}
+
+bool WordAnalyzer::isPoint()
+{
+	int length = strlen(symbol);
+	if (length == 1)
+	{
+		if (*symbol == '.')
 			return true;
 		return false;
 	}
