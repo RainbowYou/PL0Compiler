@@ -28,6 +28,8 @@ public:
 	void setSymbol(char* s);
 	char* getSymbol();
 
+	void initialData();
+
 	void analyze();
 
 private:
@@ -44,6 +46,7 @@ private:
 
 	bool isLetter(char c);
 	bool isDigit(char c);
+
 
 	bool isKeywords(string str,int* t);//Finding if a token is keyword
 

@@ -3,14 +3,21 @@
 
 WordAnalyzer::WordAnalyzer()
 {
-	token = "";
-	symbol = "";
+	initialData();
 }
 
 WordAnalyzer::~WordAnalyzer()
 {
 	delete token;
 	delete symbol;
+}
+
+void WordAnalyzer::initialData()
+{
+	setToken("");
+	setSymbol("");
+	setNum(-1);
+	setType(-1);
 }
 
 void WordAnalyzer::setType(int t)
@@ -202,7 +209,7 @@ bool WordAnalyzer::isLetter(char c)
 
 bool WordAnalyzer::isDigit(char c)
 {
-	if (c > '0' && c < '9')
+	if (c >= '0' && c <= '9')
 		return true;
 	return false;
 }
@@ -224,53 +231,23 @@ bool WordAnalyzer::isKeywords(string str,int* t)
 
 void WordAnalyzer::analyze()
 {
-	if (isPlusOperator())
-	{
-		setType(PLUSO);
-		setToken(symbol);
-	}
+	//initialData();
 
-	else if (isMulOperator())
-	{
-		setType(MULTIPLYO);
-		setToken(symbol);
-	}
+	if (isPlusOperator()) { setType(PLUSO); setToken(symbol); }
 
-	else if (isRelOperator())
-	{
-		setType(RELATIONO);
-		setToken(symbol);
-	}
+	else if (isMulOperator()) { setType(MULTIPLYO); setToken(symbol); }
 
-	else if (isComma())
-	{
-		setType(COMMA);
-		setToken(symbol);
-	}
+	else if (isRelOperator()) { setType(RELATIONO); setToken(symbol); }
 
-	else if (isSemicolon())
-	{
-		setType(SEMICOLON);
-		setToken(symbol);
-	}
+	else if (isComma()) { setType(COMMA); setToken(symbol); }
 
-	else if (isAssign())
-	{
-		setType(ASSIGN);
-		setToken(symbol);
-	}
+	else if (isSemicolon()) { setType(SEMICOLON); setToken(symbol); }
 
-	else if (isLP())
-	{
-		setType(LP);
-		setToken(symbol);
-	}
+	else if (isAssign()) { setType(ASSIGN); setToken(symbol); }
 
-	else if (isRP())
-	{
-		setType(RP);
-		setToken(symbol);
-	}
+	else if (isLP()) { setType(LP); setToken(symbol); }
+
+	else if (isRP()) { setType(RP); setToken(symbol); }
 
 	else if (isLetter(*symbol))
 	{
@@ -306,7 +283,6 @@ void WordAnalyzer::analyze()
 		for (int i = 1; i < length; i++)
 		{
 			if (isDigit(symbol[i])) flag == true;
-
 			else 
 			{
 				flag = false;
@@ -319,12 +295,13 @@ void WordAnalyzer::analyze()
 		{
 			setType(UINT);
 			//Transfer string to integer
-			setNum((*symbol) - '\0');
+			int n = -1;
+			sscanf(symbol, "%d", &n);
+			setNum(n);
 		}
 		else //Not integer,token error!
 		{
 			//Error handler should be put here!
 		}
 	}
-
 }

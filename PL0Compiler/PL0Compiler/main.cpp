@@ -31,7 +31,10 @@ int main(void)
 		//Setting current reading string
 		wordAnalyzer.setSymbol(str);
 		wordAnalyzer.analyze();
-		outputFile << "(" << wordAnalyzer.getType() << "," << wordAnalyzer.getToken() << ")" << endl;
+		outputFile << "( " << wordAnalyzer.getType() << ",";
+		if (wordAnalyzer.getNum() != -1) outputFile << wordAnalyzer.getNum() << " )" << endl;
+		else outputFile << wordAnalyzer.getToken() << " )" << endl;
+		wordAnalyzer.initialData();
 	}
 	outputFile.close();
 }

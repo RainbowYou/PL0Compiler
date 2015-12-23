@@ -7,7 +7,7 @@ begin
 	while cock <= head do
 	begin
 		rabbit := head - cock ;
-		if cock * 2 + rabbit * 4 = foot then
+		if cock * 12 + rabbit * 4 = foot then
 		begin
 			write(cock,rabbit) ;
 			n := n + 1
