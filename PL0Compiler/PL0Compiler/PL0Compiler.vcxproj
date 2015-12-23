@@ -89,13 +89,18 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="SyntaxAnalyzer.cpp" />
     <ClCompile Include="WordAnalyzer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Symbol.h" />
+    <ClInclude Include="SyntaxAnalyzer.h" />
     <ClInclude Include="WordAnalyzer.h" />
   </ItemGroup>
   <ItemGroup>
+    <Text Include="..\..\syntax\C0文法.txt" />
+    <Text Include="..\..\syntax\PL0文法.txt" />
+    <Text Include="output1.txt" />
     <Text Include="test1.txt" />
     <Text Include="test2.txt" />
     <Text Include="test3.txt" />

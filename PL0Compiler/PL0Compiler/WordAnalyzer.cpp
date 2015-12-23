@@ -25,7 +25,7 @@ void WordAnalyzer::setType(int t)
 	type = t;
 }
 
-int WordAnalyzer::getType()
+int WordAnalyzer::getType() const
 {
 	return type;
 }
@@ -42,7 +42,7 @@ void WordAnalyzer::setSymbol(char* s)
 	symbol[len] = '\0';
 }
 
-char* WordAnalyzer::getSymbol()
+char* WordAnalyzer::getSymbol() const
 {
 	return symbol;
 }
@@ -52,7 +52,7 @@ void WordAnalyzer::setNum(int n)
 	num = n;
 }
 
-int WordAnalyzer::getNum()
+int WordAnalyzer::getNum() const
 {
 	return num;
 }
@@ -69,7 +69,7 @@ void WordAnalyzer::setToken(char* t)
 	token[len] = '\0';
 }
 
-string WordAnalyzer::getToken()
+string WordAnalyzer::getToken() const
 {
 	string str(token);
 	return str;
@@ -231,8 +231,6 @@ bool WordAnalyzer::isKeywords(string str,int* t)
 
 void WordAnalyzer::analyze()
 {
-	//initialData();
-
 	if (isPlusOperator()) { setType(PLUSO); setToken(symbol); }
 
 	else if (isMulOperator()) { setType(MULTIPLYO); setToken(symbol); }
@@ -288,7 +286,6 @@ void WordAnalyzer::analyze()
 				flag = false;
 				break;
 			}
-			//symbol++;
 		}
 
 		if (flag)

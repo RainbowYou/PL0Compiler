@@ -20,13 +20,13 @@ public:
 
 public:
 	void setType(int t);
-	int getType();
+	int getType() const;
 	void setNum(int n);
-	int getNum();
+	int getNum() const;
 	void setToken(char* t);
-	string getToken();
+	string getToken() const;
 	void setSymbol(char* s);
-	char* getSymbol();
+	char* getSymbol() const;
 
 	void initialData();
 
