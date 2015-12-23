@@ -46,6 +46,7 @@ void SyntaxAnalyzer::analyze()
 void SyntaxAnalyzer::program()
 {
 	partialProgram();
+
 	wordAnalyzer.setSymbol();
 	if (wordAnalyzer.getType() == POINT)
 	{
@@ -71,23 +72,34 @@ void SyntaxAnalyzer::constPart()
 	wordAnalyzer.setSymbol();
 	if (wordAnalyzer.getType() == CONST)
 	{
-		//
 		constDef();
 		wordAnalyzer.setSymbol();
 		if (wordAnalyzer.getType() == COMMA)
 		{
-
+			while (wordAnalyzer.getType() == COMMA)
+			{
+				constDef();
+				wordAnalyzer.setSymbol();
+			}
 		}
 
 		else if (wordAnalyzer.getType() == SEMICOLON)
 		{
-
+			//wordAnalyzer.setSymbol();
 		}
 
 		else 
 		{
 			//syntax error,error handlers should be put here!
 		}
+	}
+}
+
+void SyntaxAnalyzer::identifier()
+{
+	if (wordAnalyzer.getType() == IDENTIFIER)
+	{
+		wordAnalyzer.setSymbol();
 	}
 }
 
@@ -102,7 +114,7 @@ void SyntaxAnalyzer::constDef()
 			wordAnalyzer.setSymbol();
 			if (wordAnalyzer.getType() == UINT)
 			{
-
+				
 			}
 			else 
 			{//syntax error,error handlers should be put here!
@@ -127,7 +139,31 @@ void SyntaxAnalyzer::varPart()
 		wordAnalyzer.setSymbol();
 		if (wordAnalyzer.getType() == IDENTIFIER)
 		{
+			wordAnalyzer.setSymbol();
+			if (wordAnalyzer.getType() == COMMA)
+			{
+				while (wordAnalyzer.getType() == COMMA)
+				{
+					wordAnalyzer.setSymbol();
+					if (wordAnalyzer.getType() == IDENTIFIER)
+					{
+						wordAnalyzer.setSymbol();
+					}
+					else
+					{
+						//syntax error,error handlers should be put here!
+					}
 
+				}
+			}
+			else if (wordAnalyzer.getType()==SEMICOLON)
+			{
+				
+			}
+			else
+			{
+				//syntax error,error handlers should be put here!
+			}
 		}
 		else
 		{
@@ -145,7 +181,15 @@ void SyntaxAnalyzer::procedurePart()
 	procedureHeader();
 	partialProgram();
 
-	////////////////////////////////////////////
+	wordAnalyzer.setSymbol();
+	if (wordAnalyzer.getType() == SEMICOLON)
+	{
+
+	}
+	else
+	{
+		//syntax error,error handlers should be put here!
+	}
 }
 
 void SyntaxAnalyzer::procedureHeader()
@@ -209,12 +253,22 @@ void SyntaxAnalyzer::expression()
 	if (!isPlus) wordAnalyzer.back();
 
 	item();
+	while (wordAnalyzer.getType() == RELATIONO)
+	{
+		item();
+		wordAnalyzer.setSymbol();
+	}
 
 }
 
 void SyntaxAnalyzer::item()
 {
 	factor();
+	while (wordAnalyzer.getType() == MULTIPLYO)
+	{
+		factor();
+		wordAnalyzer.setSymbol();
+	}
 }
 
 void SyntaxAnalyzer::factor()
@@ -226,7 +280,7 @@ void SyntaxAnalyzer::factor()
 		wordAnalyzer.setSymbol();
 		if (wordAnalyzer.getType() == RP)
 		{
-
+			wordAnalyzer.setSymbol();
 		}
 		else
 		{
@@ -236,12 +290,12 @@ void SyntaxAnalyzer::factor()
 
 	else if (wordAnalyzer.getType()==IDENTIFIER)
 	{
-
+		wordAnalyzer.setSymbol();
 	}
 
 	else if (wordAnalyzer.getType() == UINT)
 	{
-
+		wordAnalyzer.setSymbol();
 	}
 	else
 	{
@@ -259,6 +313,11 @@ void SyntaxAnalyzer::conditionSentence()
 		if (wordAnalyzer.getType() == THEN)
 		{
 			sentence();
+			if (wordAnalyzer.getType() == ELSE)
+			{
+				wordAnalyzer.setSymbol();
+				sentence();
+			}
 		}
 		else
 		{
@@ -344,7 +403,12 @@ void SyntaxAnalyzer::uniteSentence()
 	if (wordAnalyzer.getType() == BEGIN)
 	{
 		sentence();
-		/////////////////////////
+		
+		while (wordAnalyzer.getType() == SEMICOLON)
+		{
+			wordAnalyzer.setSymbol();
+			sentence();
+		}
 
 		wordAnalyzer.setSymbol();
 		if (wordAnalyzer.getType() == END)
@@ -369,7 +433,12 @@ void SyntaxAnalyzer::repeatSentence()
 	if (wordAnalyzer.getType() == REPEAT)
 	{
 		sentence();
-		///////////////////////
+
+		while (wordAnalyzer.getType() == SEMICOLON)
+		{
+			wordAnalyzer.setSymbol();
+			sentence();
+		}
 
 		wordAnalyzer.setSymbol();
 		if (wordAnalyzer.getType() == UNTIL)
@@ -398,21 +467,37 @@ void SyntaxAnalyzer::readSentence()
 			wordAnalyzer.setSymbol();
 			if (wordAnalyzer.getType() == IDENTIFIER)
 			{
+				wordAnalyzer.setSymbol();
+				if (wordAnalyzer.getType() == COMMA)
+				{
+					while (wordAnalyzer.getType() == COMMA)
+					{
+						wordAnalyzer.setSymbol();
+						if (wordAnalyzer.getType() == IDENTIFIER)
+						{
 
+						}
+						else
+						{
+							//syntax error,error handlers should be put here!
+						}
+						wordAnalyzer.setSymbol();
+					}
+				}
+				else if (wordAnalyzer.getType() == RP)
+				{
+
+				}
+				else
+				{
+					//syntax error,error handlers should be put here!
+				}
 			}
 			else
 			{
 				//syntax error,error handlers should be put here!
 			}
-			wordAnalyzer.setSymbol();
-			if (wordAnalyzer.getType() == RP)
-			{
 
-			}
-			else
-			{
-				//syntax error,error handlers should be put here!
-			}
 		}
 		else
 		{
@@ -436,21 +521,37 @@ void SyntaxAnalyzer::writeSentence()
 			wordAnalyzer.setSymbol();
 			if (wordAnalyzer.getType() == IDENTIFIER)
 			{
+				wordAnalyzer.setSymbol();
+				if (wordAnalyzer.getType() == COMMA)
+				{
+					while (wordAnalyzer.getType() == COMMA)
+					{
+						wordAnalyzer.setSymbol();
+						if (wordAnalyzer.getType() == IDENTIFIER)
+						{
 
+						}
+						else
+						{
+							//syntax error,error handlers should be put here!
+						}
+						wordAnalyzer.setSymbol();
+					}
+				}
+				else if (wordAnalyzer.getType() == RP)
+				{
+
+				}
+				else
+				{
+					//syntax error,error handlers should be put here!
+				}
 			}
 			else
 			{
 				//syntax error,error handlers should be put here!
 			}
-			wordAnalyzer.setSymbol();
-			if (wordAnalyzer.getType() == RP)
-			{
 
-			}
-			else
-			{
-				//syntax error,error handlers should be put here!
-			}
 		}
 		else
 		{
