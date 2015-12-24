@@ -40,14 +40,14 @@ WordAnalyzer SyntaxAnalyzer::getWordAnalyzer() const
 
 void SyntaxAnalyzer::analyze()
 {
-
+	wordAnalyzer.setSymbol();
+	program();
 }
 
 void SyntaxAnalyzer::program()
 {
 	partialProgram();
 
-	wordAnalyzer.setSymbol();
 	if (wordAnalyzer.getType() == POINT)
 	{
 
@@ -61,40 +61,36 @@ void SyntaxAnalyzer::program()
 
 void SyntaxAnalyzer::partialProgram()
 {
-	constPart();
-	varPart();
-	procedurePart();
-	sentence();
+	if (wordAnalyzer.getType() == CONST) constPart();
+
+	else if (wordAnalyzer.getType() == VAR) varPart();
+
+	else if (wordAnalyzer.getType() == PROCEDURE) procedurePart();
+
+	else sentence();
+	
 	wordAnalyzer.setSymbol();
 }
 
 void SyntaxAnalyzer::constPart()
 {
 	wordAnalyzer.setSymbol();
-	if (wordAnalyzer.getType() == CONST)
+	constDef();
+		
+	while (wordAnalyzer.getType() == COMMA)
 	{
 		wordAnalyzer.setSymbol();
-		constDef();
-		
-		while (wordAnalyzer.getType() == COMMA)
-		{
-			wordAnalyzer.setSymbol();
-			constDef();		
-		}
-
-		if (wordAnalyzer.getType() == SEMICOLON)
-		{
-			//wordAnalyzer.setSymbol();
-		}
-
-		else 
-		{
-			//syntax error,error handlers should be put here!
-		}
+		constDef();		
 	}
-	else
+
+	if (wordAnalyzer.getType() == SEMICOLON)
 	{
-		//Not const statement part
+		//wordAnalyzer.setSymbol();
+	}
+
+	else 
+	{
+		//syntax error,error handlers should be put here!
 	}
 }
 
@@ -136,35 +132,25 @@ void SyntaxAnalyzer::constDef()
 void SyntaxAnalyzer::varPart()
 {
 	wordAnalyzer.setSymbol();
-	if (wordAnalyzer.getType() == VAR)
+	identifier();
+	while (wordAnalyzer.getType() == COMMA)
 	{
 		wordAnalyzer.setSymbol();
 		identifier();
-		while (wordAnalyzer.getType() == COMMA)
-		{
-			wordAnalyzer.setSymbol();
-			identifier();
-		}
+	}
 
-		if (wordAnalyzer.getType()==SEMICOLON)
-		{
+	if (wordAnalyzer.getType()==SEMICOLON)
+	{
 				
-		}
-		else
-		{
-			//syntax error,error handlers should be put here!
-		}
 	}
 	else
 	{
-		//Not variable statement part ,move to next symbol
-		wordAnalyzer.setSymbol();
+		//syntax error,error handlers should be put here!
 	}
 }
 
 void SyntaxAnalyzer::procedurePart()
 {
-	wordAnalyzer.setSymbol();
 	procedureHeader();
 
 	wordAnalyzer.setSymbol();
@@ -199,14 +185,21 @@ void SyntaxAnalyzer::procedureHeader()
 
 void SyntaxAnalyzer::sentence()
 {
-	assignSentence();
-	conditionSentence();
-	whileSentence();
-	procedureCallSentence();
-	readSentence();
-	writeSentence();
-	uniteSentence();
-	repeatSentence();
+	if (wordAnalyzer.getType() == IDENTIFIER) assignSentence();
+	
+	else if(wordAnalyzer.getType()==IF) conditionSentence();
+
+	else if (wordAnalyzer.getType() == WHILE) whileSentence();
+
+	else if (wordAnalyzer.getType() == CALL) procedureCallSentence();
+
+	else if (wordAnalyzer.getType() == READ) readSentence();
+
+	else if (wordAnalyzer.getType() == WRITE) writeSentence();
+
+	else if (wordAnalyzer.getType() == BEGIN) uniteSentence();
+
+	else if (wordAnalyzer.getType() == REPEAT) repeatSentence();
 
 	wordAnalyzer.setSymbol();
 }
@@ -214,17 +207,9 @@ void SyntaxAnalyzer::sentence()
 void SyntaxAnalyzer::assignSentence()
 {
 	wordAnalyzer.setSymbol();
-	if (wordAnalyzer.getType() == IDENTIFIER)
+	if (wordAnalyzer.getType() == ASSIGN)
 	{
-		wordAnalyzer.setSymbol();
-		if (wordAnalyzer.getType() == ASSIGN)
-		{
-			expression();
-		}
-		else
-		{
-			//syntax error,error handlers should be put here!
-		}
+		expression();
 	}
 	else
 	{
@@ -293,23 +278,15 @@ void SyntaxAnalyzer::factor()
 
 void SyntaxAnalyzer::conditionSentence()
 {
+	condition();
 	wordAnalyzer.setSymbol();
-	if (wordAnalyzer.getType() == IF)
+	if (wordAnalyzer.getType() == THEN)
 	{
-		condition();
-		wordAnalyzer.setSymbol();
-		if (wordAnalyzer.getType() == THEN)
+		sentence();
+		if (wordAnalyzer.getType() == ELSE)
 		{
+			wordAnalyzer.setSymbol();
 			sentence();
-			if (wordAnalyzer.getType() == ELSE)
-			{
-				wordAnalyzer.setSymbol();
-				sentence();
-			}
-		}
-		else
-		{
-			//syntax error,error handlers should be put here!
 		}
 	}
 	else
@@ -342,128 +319,88 @@ void SyntaxAnalyzer::condition()
 
 void SyntaxAnalyzer::whileSentence()
 {
+	condition();
 	wordAnalyzer.setSymbol();
-	if (wordAnalyzer.getType() == WHILE)
+	if (wordAnalyzer.getType() == DO)
 	{
-		condition();
-		wordAnalyzer.setSymbol();
-		if (wordAnalyzer.getType() == DO)
-		{
-			sentence();
-		}
-		else
-		{
-			//syntax error,error handlers should be put here!
-		}
+		sentence();
 	}
 	else
 	{
-		//Not while sentence
+		//syntax error,error handlers should be put here!
 	}
 }
 
 void SyntaxAnalyzer::procedureCallSentence()
 {
 	wordAnalyzer.setSymbol();
-	if (wordAnalyzer.getType() == CALL)
+	if (wordAnalyzer.getType() == IDENTIFIER)
 	{
-		wordAnalyzer.setSymbol();
-		if (wordAnalyzer.getType() == IDENTIFIER)
-		{
 
-		}
-		else
-		{
-			//syntax error,error handlers should be put here!
-		}
 	}
 	else
 	{
-		//Not procedure call sentence
+		//syntax error,error handlers should be put here!
 	}
 }
 
 void SyntaxAnalyzer::uniteSentence()
 {
-	wordAnalyzer.setSymbol();
-	if (wordAnalyzer.getType() == BEGIN)
-	{
-		sentence();
+	sentence();
 		
-		while (wordAnalyzer.getType() == SEMICOLON)
-		{
-			wordAnalyzer.setSymbol();
-			sentence();
-		}
+	while (wordAnalyzer.getType() == SEMICOLON)
+	{
+		wordAnalyzer.setSymbol();
+		sentence();
+	}
 
-		if (wordAnalyzer.getType() == END)
-		{
+	if (wordAnalyzer.getType() == END)
+	{
 
-		}
-		else
-		{
-			//syntax error,error handlers should be put here!
-		}
 	}
 	else
 	{
-		//Not unite sentence
+			//syntax error,error handlers should be put here!
 	}
-
 }
 
 void SyntaxAnalyzer::repeatSentence()
 {
-	wordAnalyzer.setSymbol();
-	if (wordAnalyzer.getType() == REPEAT)
+	sentence();
+
+	while (wordAnalyzer.getType() == SEMICOLON)
 	{
+		wordAnalyzer.setSymbol();
 		sentence();
+	}
 
-		while (wordAnalyzer.getType() == SEMICOLON)
-		{
-			wordAnalyzer.setSymbol();
-			sentence();
-		}
-
-		if (wordAnalyzer.getType() == UNTIL)
-		{
-			condition();
-		}
-		else
-		{
-			//syntax error,error handlers should be put here!
-		}
+	if (wordAnalyzer.getType() == UNTIL)
+	{
+		condition();
 	}
 	else
 	{
-		//Not repeat sentence
+		//syntax error,error handlers should be put here!
 	}
+
 }
 
 void SyntaxAnalyzer::readSentence()
 {
 	wordAnalyzer.setSymbol();
-	if (wordAnalyzer.getType() == READ)
+	if (wordAnalyzer.getType() == LP)
 	{
 		wordAnalyzer.setSymbol();
-		if (wordAnalyzer.getType() == LP)
+		identifier();
+		while (wordAnalyzer.getType() == COMMA)
 		{
 			wordAnalyzer.setSymbol();
 			identifier();
-			while (wordAnalyzer.getType() == COMMA)
-			{
-				wordAnalyzer.setSymbol();
-				identifier();
-			}
+		}
 			
-			if (wordAnalyzer.getType() == RP)
-			{
+		if (wordAnalyzer.getType() == RP)
+		{
 
-			}
-			else
-			{
-				//syntax error,error handlers should be put here!
-			}
 		}
 		else
 		{
@@ -472,34 +409,26 @@ void SyntaxAnalyzer::readSentence()
 	}
 	else
 	{
-		//Not read sentence
+		//syntax error,error handlers should be put here!
 	}
 }
 
 void SyntaxAnalyzer::writeSentence()
 {
 	wordAnalyzer.setSymbol();
-	if (wordAnalyzer.getType() == WRITE)
+	if (wordAnalyzer.getType() == LP)
 	{
 		wordAnalyzer.setSymbol();
-		if (wordAnalyzer.getType() == LP)
+		identifier();
+		while (wordAnalyzer.getType() == COMMA)
 		{
 			wordAnalyzer.setSymbol();
 			identifier();
-			while (wordAnalyzer.getType() == COMMA)
-			{
-				wordAnalyzer.setSymbol();
-				identifier();
-			}
+		}
 
-			if (wordAnalyzer.getType() == RP)
-			{
+		if (wordAnalyzer.getType() == RP)
+		{
 
-			}
-			else
-			{
-				//syntax error,error handlers should be put here!
-			}
 		}
 		else
 		{
@@ -508,6 +437,6 @@ void SyntaxAnalyzer::writeSentence()
 	}
 	else
 	{
-		//Not write sentence
+		//syntax error,error handlers should be put here!
 	}
 }
