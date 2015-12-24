@@ -153,24 +153,26 @@ void SyntaxAnalyzer::procedurePart()
 {
 	procedureHeader();
 
-	wordAnalyzer.setSymbol();
-	partialProgram();
-
-	while (wordAnalyzer.getType() == SEMICOLON)
+	if(wordAnalyzer.getType() == SEMICOLON)
 	{
-		procedurePart();
-		wordAnalyzer.setSymbol();
+
+	}
+	else
+	{
+		//syntax error,error handlers should be put here!
 	}
 }
 
 void SyntaxAnalyzer::procedureHeader()
 {
-	if (wordAnalyzer.getType() == PROCEDURE)
+	wordAnalyzer.setSymbol();
+	if (wordAnalyzer.getType() == IDENTIFIER)
 	{
 		wordAnalyzer.setSymbol();
-		if (wordAnalyzer.getType() == IDENTIFIER)
+		if (wordAnalyzer.getType() == SEMICOLON)
 		{
-
+			wordAnalyzer.setSymbol();
+			partialProgram();
 		}
 		else
 		{
