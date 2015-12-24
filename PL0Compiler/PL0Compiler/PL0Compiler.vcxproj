@@ -88,12 +88,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Error.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="SyntaxAnalyzer.cpp" />
     <ClCompile Include="WordAnalyzer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="analyzer.h" />
+    <ClInclude Include="Error.h" />
     <ClInclude Include="Symbol.h" />
     <ClInclude Include="SyntaxAnalyzer.h" />
     <ClInclude Include="WordAnalyzer.h" />
