@@ -1,3 +1,11 @@
+/*
+Date:2015-12-20
+Author:Bluefish
+statement:
+	This file is for symbols declaring.
+*/
+
+
 #ifndef SYMBOL_H
 #define SYMBOL_H
 #include <string>

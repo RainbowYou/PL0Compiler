@@ -27,6 +27,9 @@
     <Filter Include="Source Files\Analyzers">
       <UniqueIdentifier>{b4f37d80-87c8-4099-aaa6-8934fee322ac}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Symbol Table">
+      <UniqueIdentifier>{7caa90a9-5154-45ef-b168-e27004266d38}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -40,6 +43,9 @@
     </ClCompile>
     <ClCompile Include="Error.cpp">
       <Filter>Source Files\Error Handlers</Filter>
+    </ClCompile>
+    <ClCompile Include="SymbolTable.cpp">
+      <Filter>Source Files\Symbol Table</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -57,6 +63,9 @@
     </ClInclude>
     <ClInclude Include="Error.h">
       <Filter>Source Files\Error Handlers</Filter>
+    </ClInclude>
+    <ClInclude Include="SymbolTable.h">
+      <Filter>Source Files\Symbol Table</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

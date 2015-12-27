@@ -9,7 +9,7 @@ begin
 		rabbit := head - cock ;
 		if cock * 12 + rabbit * 4 = foot then
 		begin
-			write(cock,rabbit) ;
+			write ( cock , rabbit ) ;
 			n := n + 1
 		end ;
 		cock := cock + 1

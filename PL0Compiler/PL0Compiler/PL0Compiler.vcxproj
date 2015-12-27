@@ -90,6 +90,7 @@
   <ItemGroup>
     <ClCompile Include="Error.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="SymbolTable.cpp" />
     <ClCompile Include="SyntaxAnalyzer.cpp" />
     <ClCompile Include="WordAnalyzer.cpp" />
   </ItemGroup>
@@ -97,6 +98,7 @@
     <ClInclude Include="analyzer.h" />
     <ClInclude Include="Error.h" />
     <ClInclude Include="Symbol.h" />
+    <ClInclude Include="SymbolTable.h" />
     <ClInclude Include="SyntaxAnalyzer.h" />
     <ClInclude Include="WordAnalyzer.h" />
   </ItemGroup>
