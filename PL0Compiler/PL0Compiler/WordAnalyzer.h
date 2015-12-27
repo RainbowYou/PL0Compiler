@@ -28,7 +28,7 @@ public:
 	int getNum() const;
 	string getToken() const;
 	void setSymbol();
-	//void getSymbol();
+	string getSymbol() const;
 	bool fillSymbols();
 
 	void initialData();

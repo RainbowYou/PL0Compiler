@@ -69,24 +69,24 @@ void WordAnalyzer::setSymbol()
 {
 	cur++;
 	//Analyzing complete!
-	if (cur > symbols.size()) exit(0);
+	if (cur >= symbols.size()) { cout << "\nanalyze complete!" << endl; exit(1); }
 
-	string curSymbol = symbols[cur];
-	int length = curSymbol.length();
+	string curSymbol(symbols[cur]);
+	int length = symbols[cur].length();
 
-	char* str = new char[length + 1];
-	curSymbol.copy(str, length, 0);
+	char str[20] = { " " };
+	symbols[cur].copy(str, length, 0);
 
 	setSymbol(str);
 	analyze();
 }
 
-//
-//void WordAnalyzer::getSymbol()
-//{
-//	
-//}
 
+string WordAnalyzer::getSymbol() const
+{
+	string str(symbol);
+	return str;
+}
 
 void WordAnalyzer::setNum(int n)
 {
@@ -276,7 +276,7 @@ bool WordAnalyzer::isKeywords(string str,int* t)
 	{
 		if (str == keywords[i])
 		{
-			*t = i;
+			*t = i + 1;
 			return true;
 			break;
 		}
@@ -326,7 +326,7 @@ void WordAnalyzer::analyze()
 		}
 		else //Not correct identifier ,token error !
 		{
-			//Error handler should be put here!
+			cout << "\nerror:token " << this->getSymbol()<< " declaration is invalid\n" << endl;
 		}
 	}
 
@@ -354,7 +354,17 @@ void WordAnalyzer::analyze()
 		}
 		else //Not integer,token error!
 		{
-			//Error handler should be put here!
+			cout << "\nerror:token " << this->getSymbol() << " declaration is invalid\n" << endl;
 		}
 	}
+
+	else
+	{
+		cout << "\nerror:token " << this->getSymbol() << " declaration is invalid\n" << endl;
+	}
+	cout << "( " << this->getType() << " , ";
+	//if (this->getNum() != -1) cout << this->getNum();
+	cout << this->getToken();
+	cout << " )\n";
+
 }

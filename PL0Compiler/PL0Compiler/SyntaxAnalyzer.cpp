@@ -61,13 +61,15 @@ void SyntaxAnalyzer::program()
 
 void SyntaxAnalyzer::partialProgram()
 {
-	if (wordAnalyzer.getType() == CONST) constPart();
+	if (wordAnalyzer.getType() == CONST) {
+		constPart(); partialProgram();
+	}
 
-	else if (wordAnalyzer.getType() == VAR) varPart();
+	else if (wordAnalyzer.getType() == VAR) { varPart(); partialProgram(); }
 
 	else if (wordAnalyzer.getType() == PROCEDURE) procedurePart();
 
-	else sentence();
+	else { sentence(); partialProgram(); }
 	
 	wordAnalyzer.setSymbol();
 }
@@ -348,6 +350,7 @@ void SyntaxAnalyzer::procedureCallSentence()
 
 void SyntaxAnalyzer::uniteSentence()
 {
+	wordAnalyzer.setSymbol();
 	sentence();
 		
 	while (wordAnalyzer.getType() == SEMICOLON)
