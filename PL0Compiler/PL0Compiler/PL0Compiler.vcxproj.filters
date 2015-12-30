@@ -21,14 +21,20 @@
     <Filter Include="Test Files\Dest">
       <UniqueIdentifier>{01205e79-d421-411f-94c6-9e95d07615e4}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Error Handlers">
-      <UniqueIdentifier>{168bb252-5644-4152-bb61-dc2828c03d76}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\Analyzers">
       <UniqueIdentifier>{b4f37d80-87c8-4099-aaa6-8934fee322ac}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\Symbol Table">
       <UniqueIdentifier>{7caa90a9-5154-45ef-b168-e27004266d38}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Handlers">
+      <UniqueIdentifier>{946a13c8-b901-442b-8696-2f1944d0ada8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Handlers\Error Handlers">
+      <UniqueIdentifier>{168bb252-5644-4152-bb61-dc2828c03d76}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Handlers\Table Handler">
+      <UniqueIdentifier>{04c78b16-556e-4331-8c36-778b34d712b6}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -42,10 +48,13 @@
       <Filter>Source Files\Analyzers</Filter>
     </ClCompile>
     <ClCompile Include="Error.cpp">
-      <Filter>Source Files\Error Handlers</Filter>
+      <Filter>Source Files\Handlers\Error Handlers</Filter>
     </ClCompile>
     <ClCompile Include="SymbolTable.cpp">
       <Filter>Source Files\Symbol Table</Filter>
+    </ClCompile>
+    <ClCompile Include="SymbolTableManager.cpp">
+      <Filter>Source Files\Handlers\Table Handler</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -62,10 +71,13 @@
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="Error.h">
-      <Filter>Source Files\Error Handlers</Filter>
+      <Filter>Source Files\Handlers\Error Handlers</Filter>
     </ClInclude>
     <ClInclude Include="SymbolTable.h">
       <Filter>Source Files\Symbol Table</Filter>
+    </ClInclude>
+    <ClInclude Include="SymbolTableManager.h">
+      <Filter>Source Files\Handlers\Table Handler</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

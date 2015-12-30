@@ -6,6 +6,11 @@ using namespace std;
 
 class SymbolTable
 {
+public:
+	SymbolTable();
+	SymbolTable(char*, string, int, int, int);
+	~SymbolTable();
+
 private:
 	char* name;
 	string kind;
