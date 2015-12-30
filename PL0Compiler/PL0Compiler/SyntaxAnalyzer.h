@@ -21,7 +21,7 @@ private:
 	void constPart();			//常量说明部分
 	void constDef();			//常量定义
 
-	void identifier();
+	bool identifier();
 	void varPart();				//变量说明部分
 
 	void procedurePart();		//过程说明部分
@@ -51,6 +51,9 @@ public:
 	WordAnalyzer getWordAnalyzer() const;
 
 	void analyze();
+
+	void printSymbleTable();
+
 };
 
 #endif

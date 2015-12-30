@@ -1,11 +1,17 @@
 #include "SymbolTableManager.h"
 #include <exception>
 
-bool SymbolTableManager::insert(SymbolTable table)
+SymbolTableManager::SymbolTableManager()
+{
+	//table = new vector<SymbolTable*>();
+}
+
+bool SymbolTableManager::insert(SymbolTable* t)
 {
 	try
 	{
-		manager.push_back(table);
+		table.push_back(t);
+		curName = " ";
 	}
 
 	catch (exception e)
@@ -17,9 +23,9 @@ bool SymbolTableManager::insert(SymbolTable table)
 
 bool SymbolTableManager::remove(int index)
 {
-	if (index > manager.size()) return false;
+	if (index > table.size()) return false;
 
-	manager.erase(manager.begin() + index);
+	table.erase(table.begin() + index);
 	return true;
 }
 

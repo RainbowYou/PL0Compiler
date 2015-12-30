@@ -10,6 +10,6 @@ int main(void)
 {
 	SyntaxAnalyzer* syntaxAnalyzer = new SyntaxAnalyzer();
 	syntaxAnalyzer->analyze();
-	cout << "Syntax analyzes complete!" << endl;
+
 	//delete syntaxAnalyzer;
 }

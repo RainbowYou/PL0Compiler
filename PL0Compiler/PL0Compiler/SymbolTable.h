@@ -17,6 +17,7 @@ private:
 	string value;
 	int level;
 	int address;
+
 public:
 	void setName(string n);
 	void setKind(int k);

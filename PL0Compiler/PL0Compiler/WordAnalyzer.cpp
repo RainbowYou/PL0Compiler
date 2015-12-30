@@ -311,7 +311,6 @@ void WordAnalyzer::analyze()
 		{
 			if (isLetter(symbol[i]) || isDigit(symbol[i])) flag = true;
 			else { flag = false; break; }
-			//symbol++;
 		}
 
 		if (flag)
@@ -347,10 +346,11 @@ void WordAnalyzer::analyze()
 		if (flag)
 		{
 			setType(UINT);
-			//Transfer string to integer
-			int n = -1;
-			sscanf(symbol, "%d", &n);
-			setNum(n);
+			////Transfer string to integer
+			//int n = -1;
+			//sscanf(symbol, "%d", &n);
+			//setNum(n);
+			setToken(symbol);
 		}
 		else //Not integer,token error!
 		{
@@ -362,9 +362,6 @@ void WordAnalyzer::analyze()
 	{
 		cout << "\nerror:token " << this->getSymbol() << " declaration is invalid\n" << endl;
 	}
-	cout << "( " << this->getType() << " , ";
-	//if (this->getNum() != -1) cout << this->getNum();
-	cout << this->getToken();
-	cout << " )\n";
+	cout << "( " << this->getType() << " , " << this->getToken() << " )\n";
 
 }

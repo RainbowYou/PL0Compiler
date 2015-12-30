@@ -16,6 +16,7 @@ private:
 	char* symbol;//当前读入的字符串
 	vector<string> symbols;
 	static int cur;
+	
 public:
 	WordAnalyzer();//constructor
 	//WordAnalyzer(int&, int&, char* &, char* &);//copy constructor
@@ -23,12 +24,15 @@ public:
 
 public:
 	void setType(int t);
-	int getType() const;
 	void setNum(int n);
+	void setSymbol();
+
+	int getType() const;
 	int getNum() const;
 	string getToken() const;
-	void setSymbol();
 	string getSymbol() const;
+	
+	
 	bool fillSymbols();
 
 	void initialData();
@@ -36,6 +40,9 @@ public:
 	void analyze();
 
 	void back();
+
+	//int getCurPtr() const { return cur; }
+	//vector<string> getSymbols() const { return symbols; }
 
 private:
 	bool isPlusOperator();

@@ -7,14 +7,17 @@ using namespace std;
 
 class SymbolTableManager
 {
+public:
+	SymbolTableManager();
+
 private:
-	vector<SymbolTable> manager;
+	vector<SymbolTable*> table;
 	string curName;
 	int curType;
 	string curValue;
 
 public:
-	bool insert(SymbolTable);
+	bool insert(SymbolTable*);
 	bool remove(int);
 
 public:
@@ -25,7 +28,7 @@ public:
 	string getCurrentName() const { return curName; }
 	int getCurrentType() const { return curType; }
 	string getCurrentValue() const { return curValue; }
-
+	vector<SymbolTable*> getSymbolTable() const { return table; }
 };
 
 #endif

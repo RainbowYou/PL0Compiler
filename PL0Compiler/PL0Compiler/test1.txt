@@ -1,4 +1,4 @@
-const z = 0 ;
+const z = 1 ;
 var head , foot , cock , rabbit , n ;
 begin
 	n := z ;
@@ -15,4 +15,4 @@ begin
 		cock := cock + 1
 	end ;
 	if n = 0 then write ( 0 , 0 )
-end
+end .
