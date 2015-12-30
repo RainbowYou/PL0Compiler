@@ -1,12 +1,14 @@
 #ifndef SYNTAXANALYZER_H
 #define SYNTAXANALYZER_H
 
+#include "SymbolTableManager.h"
 
 class SyntaxAnalyzer
 {
 private:
 	WordAnalyzer wordAnalyzer;
-	char* symbol;
+	/*char* symbol;*/
+	SymbolTableManager* tableManager;
 
 public:
 	SyntaxAnalyzer();//constructor
@@ -42,8 +44,8 @@ private:
 	void repeatSentence();		//÷ÿ∏¥”Ôæ‰
 
 public:
-	void setSymbol(char* s);
-	char* getSymbol() const;
+	/*void setSymbol(char* s);
+	char* getSymbol() const;*/
 
 	void setWordAnalyzer();
 	WordAnalyzer getWordAnalyzer() const;

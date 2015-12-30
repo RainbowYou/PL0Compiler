@@ -2,13 +2,13 @@
 
 SymbolTable::SymbolTable()
 {
-	setKind(NULL);
-	setValue(-1);
+	setKind(-1);
+	setValue(NULL);
 	setLevel(-1);
 	setAddress(-1);
 }
 
-SymbolTable::SymbolTable(char* s, string k, int v, int l, int addr)
+SymbolTable::SymbolTable(string s, int k, string v, int l, int addr)
 {
 	setName(s);
 	setKind(k);
@@ -19,26 +19,24 @@ SymbolTable::SymbolTable(char* s, string k, int v, int l, int addr)
 
 SymbolTable::~SymbolTable()
 {
-	delete name;
-	setKind(NULL);
-	setValue(-1);
+	setName(NULL);
+	setKind(-1);
+	setValue(NULL);
 	setLevel(-1);
 	setAddress(-1);
 }
 
-void SymbolTable::setName(char *s)
+void SymbolTable::setName(string s)
 {
-	int len = strlen(s);
-	name = new char[len + 1];
-	strcpy(name, s);
+	name = s;
 }
 
-void SymbolTable::setKind(string k)
+void SymbolTable::setKind(int k)
 {
 	kind = k;
 }
 
-void SymbolTable::setValue(int v)
+void SymbolTable::setValue(string v)
 {
 	value = v;
 }

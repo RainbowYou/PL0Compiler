@@ -5,7 +5,7 @@ bool SymbolTableManager::insert(SymbolTable table)
 {
 	try
 	{
-		tableManager.push_back(table);
+		manager.push_back(table);
 	}
 
 	catch (exception e)
@@ -17,8 +17,23 @@ bool SymbolTableManager::insert(SymbolTable table)
 
 bool SymbolTableManager::remove(int index)
 {
-	if (index > tableManager.size()) return false;
+	if (index > manager.size()) return false;
 
-	tableManager.erase(tableManager.begin() + index);
+	manager.erase(manager.begin() + index);
 	return true;
+}
+
+void SymbolTableManager::setCurrentName(string s)
+{
+	curName = s;
+}
+
+void SymbolTableManager::setCurrentType(int t)
+{
+	curType = t;
+}
+
+void SymbolTableManager::setCurrentValue(string v)
+{
+	curValue = v;
 }

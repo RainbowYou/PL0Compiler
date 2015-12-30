@@ -3,30 +3,32 @@
 
 SyntaxAnalyzer::SyntaxAnalyzer()
 {
-	setSymbol("");
+	//setSymbol("");
 	setWordAnalyzer();
+	tableManager = new SymbolTableManager();
 }
 
 SyntaxAnalyzer::~SyntaxAnalyzer()
 {
-	delete symbol;
+	//delete symbol;
+	delete tableManager;
 }
 
-void SyntaxAnalyzer::setSymbol(char* s)
-{
-	int len = strlen(s);
-	symbol = new char[len + 1];
-	for (int i = 0; i < len; i++)
-	{
-		symbol[i] = s[i];
-	}
-	symbol[len] = '\0';
-}
-
-char* SyntaxAnalyzer::getSymbol() const
-{
-	return symbol;
-}
+//void SyntaxAnalyzer::setSymbol(char* s)
+//{
+//	int len = strlen(s);
+//	symbol = new char[len + 1];
+//	for (int i = 0; i < len; i++)
+//	{
+//		symbol[i] = s[i];
+//	}
+//	symbol[len] = '\0';
+//}
+//
+//char* SyntaxAnalyzer::getSymbol() const
+//{
+//	return symbol;
+//}
 
 void SyntaxAnalyzer::setWordAnalyzer()
 {
@@ -108,16 +110,23 @@ void SyntaxAnalyzer::constDef()
 {
 	if (wordAnalyzer.getType() == IDENTIFIER)
 	{
+		tableManager->setCurrentName(wordAnalyzer.getSymbol());
+		tableManager->setCurrentType(wordAnalyzer.getType());
 		wordAnalyzer.setSymbol();
 		if (wordAnalyzer.getType() == RELATIONO && wordAnalyzer.getToken() == "=")
 		{
 			wordAnalyzer.setSymbol();
 			if (wordAnalyzer.getType() == UINT)
 			{
+				tableManager->setCurrentValue(wordAnalyzer.getSymbol());
 				wordAnalyzer.setSymbol();
+				tableManager->insert(SymbolTable(tableManager->getCurrentName(),
+												tableManager->getCurrentType(),
+												tableManager->getCurrentValue()));
 			}
 			else 
 			{//syntax error,error handlers should be put here!
+
 			}
 		}
 		else

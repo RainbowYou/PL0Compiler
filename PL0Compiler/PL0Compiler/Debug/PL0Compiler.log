@@ -1,10 +1,18 @@
-﻿Build started 2015/12/30 10:45:17.
+﻿Build started 2015/12/30 11:27:02.
      1>Project "C:\Users\煜\Documents\Visual Studio 2013\Projects\PL0Compiler\PL0Compiler\PL0Compiler\PL0Compiler.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         F:\Program Files (x86)Microsoft\Visual Studio\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _CRT_SECURE_NO_WARNINGS /D D_SCL_SECURE_NO_WARNINGS /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt SymbolTable.cpp SymbolTableManager.cpp
+         F:\Program Files (x86)Microsoft\Visual Studio\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _CRT_SECURE_NO_WARNINGS /D D_SCL_SECURE_NO_WARNINGS /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt SymbolTable.cpp SymbolTableManager.cpp SyntaxAnalyzer.cpp main.cpp
+         SyntaxAnalyzer.cpp
+     1>c:\users\煜\documents\visual studio 2013\projects\pl0compiler\pl0compiler\pl0compiler\symboltable.h(32): warning C4520: 'SymbolTable' : multiple default constructors specified
          SymbolTableManager.cpp
+     1>c:\users\煜\documents\visual studio 2013\projects\pl0compiler\pl0compiler\pl0compiler\symboltable.h(32): warning C4520: 'SymbolTable' : multiple default constructors specified
      1>c:\users\煜\documents\visual studio 2013\projects\pl0compiler\pl0compiler\pl0compiler\symboltablemanager.cpp(20): warning C4018: '>' : signed/unsigned mismatch
          SymbolTable.cpp
+     1>c:\users\煜\documents\visual studio 2013\projects\pl0compiler\pl0compiler\pl0compiler\symboltable.h(32): warning C4520: 'SymbolTable' : multiple default constructors specified
+         Generating Code...
+         Compiling...
+         main.cpp
+     1>c:\users\煜\documents\visual studio 2013\projects\pl0compiler\pl0compiler\pl0compiler\symboltable.h(32): warning C4520: 'SymbolTable' : multiple default constructors specified
          Generating Code...
        Link:
          F:\Program Files (x86)Microsoft\Visual Studio\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\煜\Documents\Visual Studio 2013\Projects\PL0Compiler\PL0Compiler\Debug\PL0Compiler.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\煜\Documents\Visual Studio 2013\Projects\PL0Compiler\PL0Compiler\Debug\PL0Compiler.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\煜\Documents\Visual Studio 2013\Projects\PL0Compiler\PL0Compiler\Debug\PL0Compiler.lib" /MACHINE:X86 Debug\Error.obj
@@ -18,4 +26,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:01.41
+Time Elapsed 00:00:02.27

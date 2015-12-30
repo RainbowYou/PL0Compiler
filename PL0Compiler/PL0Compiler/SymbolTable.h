@@ -8,25 +8,25 @@ class SymbolTable
 {
 public:
 	SymbolTable();
-	SymbolTable(char*, string, int, int, int);
+	SymbolTable(string = NULL, int = -1, string = NULL, int = -1, int = -1);
 	~SymbolTable();
 
 private:
-	char* name;
-	string kind;
-	int value;
+	string name;
+	int kind;
+	string value;
 	int level;
 	int address;
 public:
-	void setName(char* n);
-	void setKind(string k);
-	void setValue(int v);
+	void setName(string n);
+	void setKind(int k);
+	void setValue(string v);
 	void setLevel(int l);
 	void setAddress(int addr);
 
-	char* getName() const { return name; }
-	string getKind() const { return kind; }
-	int getValue() const { return value; }
+	string getName() const { return name; }
+	int getKind() const { return kind; }
+	string getValue() const { return value; }
 	int getLevel() const { return level; }
 	int getAddress() const{ return address; }
 };
