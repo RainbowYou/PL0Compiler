@@ -2,6 +2,8 @@
 #include "SyntaxAnalyzer.h"
 #include <vector>
 
+#define DEBUG 1
+
 SyntaxAnalyzer::SyntaxAnalyzer()
 {
 	//setSymbol("");
@@ -77,6 +79,8 @@ void SyntaxAnalyzer::partialProgram()
 
 void SyntaxAnalyzer::constPart()
 {
+	tableManager->setCurrentType(wordAnalyzer.getType());
+
 	wordAnalyzer.setSymbol();
 	constDef();
 		
@@ -117,8 +121,6 @@ bool SyntaxAnalyzer::identifier()
 
 void SyntaxAnalyzer::constDef()
 {
-	tableManager->setCurrentType(wordAnalyzer.getType());
-
 	//if (wordAnalyzer.getType() == IDENTIFIER)
 	//{
 		/*tableManager->setCurrentName(wordAnalyzer.getSymbol());
@@ -178,6 +180,9 @@ void SyntaxAnalyzer::varPart()
 	{
 		//syntax error,error handlers should be put here!
 	}
+#if DEBUG 1
+	printSymbleTable();
+#endif
 }
 
 void SyntaxAnalyzer::procedurePart()
@@ -492,11 +497,11 @@ void SyntaxAnalyzer::printSymbleTable()
 	for (int i = 0; i < len; i++)
 	{
 		SymbolTable* t = ts[i];
-		cout << "[ " << t->getName() << "," << t->getKind() << "," << t->getValue() << ",";
-		cout << t->getLevel() << "," << t->getAddress() << " ]/n";
+		cout << "[ \t" << t->getName() << ",\t" << t->getKind() << ",\t" << t->getValue() << ",\t";
+		cout << t->getLevel() << ",\t" << t->getAddress() << " ]\n";
 
-		delete t;
-		t = NULL;
+		//delete t;
+		//t = NULL;
 	}
 
 	cout << endl;

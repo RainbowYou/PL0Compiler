@@ -12,6 +12,8 @@ bool SymbolTableManager::insert(SymbolTable* t)
 	{
 		table.push_back(t);
 		curName = " ";
+		curType = -1;
+		curValue = " ";
 	}
 
 	catch (exception e)
