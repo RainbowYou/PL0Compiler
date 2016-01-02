@@ -346,22 +346,16 @@ void WordAnalyzer::analyze()
 		if (flag)
 		{
 			setType(UINT);
-			////Transfer string to integer
-			//int n = -1;
-			//sscanf(symbol, "%d", &n);
-			//setNum(n);
 			setToken(symbol);
 		}
 		else //Not integer,token error!
 		{
-			cout << "\nerror:token " << this->getSymbol() << " declaration is invalid\n" << endl;
+			cout << "\nerror: token \" " << this->getSymbol() << " \" declaration is invalid\n" << endl;
 		}
 	}
-
 	else
 	{
-		cout << "\nerror:token " << this->getSymbol() << " declaration is invalid\n" << endl;
+		cout << "\nerror:token \" " << this->getSymbol() << " \" declaration is invalid\n" << endl;
 	}
 	cout << "( " << this->getType() << " , " << this->getToken() << " )\n";
-
 }

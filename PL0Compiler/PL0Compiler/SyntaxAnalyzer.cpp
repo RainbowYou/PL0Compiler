@@ -17,22 +17,6 @@ SyntaxAnalyzer::~SyntaxAnalyzer()
 	delete tableManager;
 }
 
-//void SyntaxAnalyzer::setSymbol(char* s)
-//{
-//	int len = strlen(s);
-//	symbol = new char[len + 1];
-//	for (int i = 0; i < len; i++)
-//	{
-//		symbol[i] = s[i];
-//	}
-//	symbol[len] = '\0';
-//}
-//
-//char* SyntaxAnalyzer::getSymbol() const
-//{
-//	return symbol;
-//}
-
 void SyntaxAnalyzer::setWordAnalyzer()
 {
 	wordAnalyzer.fillSymbols();
@@ -101,17 +85,25 @@ void SyntaxAnalyzer::constPart()
 	}
 }
 
-bool SyntaxAnalyzer::identifier()
+bool SyntaxAnalyzer::identifier(int checkStatus)
 {
 	if (wordAnalyzer.getType() == IDENTIFIER)
 	{
-		tableManager->setCurrentName(wordAnalyzer.getSymbol());
+		tableManager->setCurrentName(wordAnalyzer.getToken());
+
+		if (checkStatus)
+		{
+			if (!tableManager->find(wordAnalyzer.getToken()))
+			{
+				cout << "identifier " << wordAnalyzer.getToken() << " not declared!" << endl;
+			}
+		}
 
 		wordAnalyzer.setSymbol();
 		return true;
 	}
 	else
-	{ //not valid identifier
+	{ 
 		//If not valid identifier ,pointer still move to next symbol
 		wordAnalyzer.setSymbol();
 	}
@@ -121,37 +113,31 @@ bool SyntaxAnalyzer::identifier()
 
 void SyntaxAnalyzer::constDef()
 {
-	//if (wordAnalyzer.getType() == IDENTIFIER)
-	//{
-		/*tableManager->setCurrentName(wordAnalyzer.getSymbol());
-		wordAnalyzer.setSymbol();*/
-	identifier();
+	identifier(0);
 	if (wordAnalyzer.getType() == RELATIONO && wordAnalyzer.getToken() == "=")
 	{
 		wordAnalyzer.setSymbol();
 		if (wordAnalyzer.getType() == UINT)
 		{
-			tableManager->setCurrentValue(wordAnalyzer.getSymbol());
+			tableManager->setCurrentValue(wordAnalyzer.getToken());
 			wordAnalyzer.setSymbol();
+
+			//Filling symbol table
 			if ((tableManager->getCurrentName()) != " ") 
 				tableManager->insert(new SymbolTable(tableManager->getCurrentName(),
 													tableManager->getCurrentType(),
-													tableManager->getCurrentValue()));
+													tableManager->getCurrentValue(),
+													tableManager->getCurrentLevel()));
 		}
 		else 
-		{//syntax error,error handlers should be put here!
-
+		{
+			//syntax error,error handlers should be put here!
 		}
 	}
 	else
 	{
 		//syntax error,error handlers should be put here!
 	}
-	//}
-	//else
-	//{
-	//	//syntax error,error handlers should be put here!
-	//}
 }
 
 void SyntaxAnalyzer::varPart()
@@ -159,18 +145,28 @@ void SyntaxAnalyzer::varPart()
 	tableManager->setCurrentType(wordAnalyzer.getType());
 
 	wordAnalyzer.setSymbol();
-	identifier();
+	identifier(0);
+
+	if ((tableManager->getCurrentName()) != " ")
+		tableManager->insert(new SymbolTable(tableManager->getCurrentName(),
+		tableManager->getCurrentType(),
+		tableManager->getCurrentValue(),
+		tableManager->getCurrentLevel(),
+		tableManager->getCurrentOffset()));
 
 	while (wordAnalyzer.getType() == COMMA)
 	{
 		wordAnalyzer.setSymbol();
-		identifier();
-
+		identifier(0);
+		tableManager->increaseOffset();
 		if ((tableManager->getCurrentName()) != " ")
 			tableManager->insert(new SymbolTable(tableManager->getCurrentName(),
 												tableManager->getCurrentType(),
-												tableManager->getCurrentValue()));
+												tableManager->getCurrentValue(),
+												tableManager->getCurrentLevel(),
+												tableManager->getCurrentOffset()));
 	}
+	tableManager->setCurrentOffset(3);
 
 	if (wordAnalyzer.getType()==SEMICOLON)
 	{
@@ -188,7 +184,7 @@ void SyntaxAnalyzer::varPart()
 void SyntaxAnalyzer::procedurePart()
 {
 	tableManager->setCurrentType(wordAnalyzer.getType());
-
+	
 	procedureHeader();
 
 	if(wordAnalyzer.getType() == SEMICOLON)
@@ -204,28 +200,24 @@ void SyntaxAnalyzer::procedurePart()
 void SyntaxAnalyzer::procedureHeader()
 {
 	wordAnalyzer.setSymbol();
-	//if (wordAnalyzer.getType() == IDENTIFIER)
-	//{
-	//	wordAnalyzer.setSymbol();
-	identifier();
+
+	identifier(0);
 	if (wordAnalyzer.getType() == SEMICOLON)
 	{
 		if ((tableManager->getCurrentName()) != " ")
 			tableManager->insert(new SymbolTable(tableManager->getCurrentName(),
 												tableManager->getCurrentType(),
-												tableManager->getCurrentValue()));
+												tableManager->getCurrentValue(),
+												tableManager->getCurrentLevel()));
+		tableManager->increaseLevel();
 		wordAnalyzer.setSymbol();
 		partialProgram();
+		tableManager->decreaseLevel();
 	}
 	else
 	{
 		//syntax error,error handlers should be put here!
 	}
-	//}
-	//else
-	//{
-	//	//syntax error,error handlers should be put here!
-	//}
 }
 
 void SyntaxAnalyzer::sentence()
@@ -251,6 +243,10 @@ void SyntaxAnalyzer::sentence()
 
 void SyntaxAnalyzer::assignSentence()
 {
+	if (!tableManager->find(wordAnalyzer.getToken()))
+	{
+		cout << "identifier " << wordAnalyzer.getToken() << " not declared!" << endl;
+	}
 	wordAnalyzer.setSymbol();
 	if (wordAnalyzer.getType() == ASSIGN)
 	{
@@ -307,6 +303,10 @@ void SyntaxAnalyzer::factor()
 
 	else if (wordAnalyzer.getType()==IDENTIFIER)
 	{
+		if (!tableManager->find(wordAnalyzer.getToken()))
+		{
+			cout << "identifier " << wordAnalyzer.getToken() << " not declared!" << endl;
+		}
 		wordAnalyzer.setSymbol();
 	}
 
@@ -381,7 +381,10 @@ void SyntaxAnalyzer::procedureCallSentence()
 	wordAnalyzer.setSymbol();
 	if (wordAnalyzer.getType() == IDENTIFIER)
 	{
-
+		if (!tableManager->find(wordAnalyzer.getToken()))
+		{
+			cout << "identifier " << wordAnalyzer.getToken() << " not declared!" << endl;
+		}
 	}
 	else
 	{
@@ -437,11 +440,11 @@ void SyntaxAnalyzer::readSentence()
 	if (wordAnalyzer.getType() == LP)
 	{
 		wordAnalyzer.setSymbol();
-		identifier();
+		identifier(1);
 		while (wordAnalyzer.getType() == COMMA)
 		{
 			wordAnalyzer.setSymbol();
-			identifier();
+			identifier(1);
 		}
 			
 		if (wordAnalyzer.getType() == RP)
@@ -465,11 +468,11 @@ void SyntaxAnalyzer::writeSentence()
 	if (wordAnalyzer.getType() == LP)
 	{
 		wordAnalyzer.setSymbol();
-		identifier();
+		identifier(1);
 		while (wordAnalyzer.getType() == COMMA)
 		{
 			wordAnalyzer.setSymbol();
-			identifier();
+			identifier(1);
 		}
 
 		if (wordAnalyzer.getType() == RP)
@@ -487,22 +490,17 @@ void SyntaxAnalyzer::writeSentence()
 	}
 }
 
-
 void SyntaxAnalyzer::printSymbleTable()
 {
 	cout << "\nPrinting Symbol Table...\n";
-
+	cout << "\t名字" << "\t类型" << "\t值" << "\t层次" << "\t偏移" << endl;
 	vector<SymbolTable*> ts = tableManager->getSymbolTable();
 	int len = ts.size();
 	for (int i = 0; i < len; i++)
 	{
 		SymbolTable* t = ts[i];
-		cout << "[ \t" << t->getName() << ",\t" << t->getKind() << ",\t" << t->getValue() << ",\t";
-		cout << t->getLevel() << ",\t" << t->getAddress() << " ]\n";
-
-		//delete t;
-		//t = NULL;
+		cout << "\t" << t->getName() << "\t" << t->getKind() << "\t" << t->getValue() << "\t"
+			<< t->getLevel() << "\t" << t->getAddress() << " \n";
 	}
-
 	cout << endl;
 }

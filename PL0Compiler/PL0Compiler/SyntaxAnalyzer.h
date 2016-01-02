@@ -21,7 +21,7 @@ private:
 	void constPart();			//常量说明部分
 	void constDef();			//常量定义
 
-	bool identifier();
+	bool identifier(int checkStatus);
 	void varPart();				//变量说明部分
 
 	void procedurePart();		//过程说明部分
