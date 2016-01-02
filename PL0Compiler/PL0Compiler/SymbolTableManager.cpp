@@ -11,7 +11,8 @@ bool SymbolTableManager::insert(SymbolTable* t)
 {
 	try
 	{
-		table.push_back(t);
+		//table.push_back(t);
+		table.push(t);
 		curName = " ";
 		//curType = -1;
 		curValue = " ";
@@ -24,12 +25,16 @@ bool SymbolTableManager::insert(SymbolTable* t)
 	return true;
 }
 
-bool SymbolTableManager::remove(int index)
+//bool SymbolTableManager::remove(int index)
+//{
+//	if (index > table.size()) return false;
+//
+//	table.erase(table.begin() + index);
+//	return true;
+//}
+void SymbolTableManager::pop()
 {
-	if (index > table.size()) return false;
-
-	table.erase(table.begin() + index);
-	return true;
+	table.pop();
 }
 
 bool SymbolTableManager::find(string s)
@@ -37,7 +42,8 @@ bool SymbolTableManager::find(string s)
 	int len = table.size();
 	for (int i = 0; i < len; i++)
 	{
-		if (s == table[i]->getName()) return true;
+		//if (s == table[i]->getName()) return true;
+		if (s == table.top()->getName()) return true;
 	}
 	return false;
 }

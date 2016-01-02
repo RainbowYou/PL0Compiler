@@ -494,13 +494,14 @@ void SyntaxAnalyzer::printSymbleTable()
 {
 	cout << "\nPrinting Symbol Table...\n";
 	cout << "\t名字" << "\t类型" << "\t值" << "\t层次" << "\t偏移" << endl;
-	vector<SymbolTable*> ts = tableManager->getSymbolTable();
+	stack<SymbolTable*> ts = tableManager->getSymbolTable();
 	int len = ts.size();
 	for (int i = 0; i < len; i++)
 	{
-		SymbolTable* t = ts[i];
+		SymbolTable* t = ts.top();
 		cout << "\t" << t->getName() << "\t" << t->getKind() << "\t" << t->getValue() << "\t"
 			<< t->getLevel() << "\t" << t->getAddress() << " \n";
+		ts.pop();
 	}
 	cout << endl;
 }

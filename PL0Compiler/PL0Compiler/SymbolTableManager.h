@@ -2,6 +2,7 @@
 #define SYMBOLTABLEMANAGER_H
 
 #include <vector>
+#include <stack>
 #include "SymbolTable.h"
 using namespace std;
 
@@ -11,7 +12,7 @@ public:
 	SymbolTableManager();
 
 private:
-	vector<SymbolTable*> table;
+	stack<SymbolTable*> table;
 	string curName;
 	int curType;
 	int curLevel;
@@ -20,7 +21,8 @@ private:
 
 public:
 	bool insert(SymbolTable*);
-	bool remove(int);
+	//bool remove(int);
+	void pop();
 	bool find(string s);
 
 public:
@@ -35,8 +37,8 @@ public:
 	int getCurrentLevel() const { return curLevel; }
 	int getCurrentOffset() const{ return curOffset; }
 	string getCurrentValue() const { return curValue; }
-	vector<SymbolTable*> getSymbolTable() const { return table; }
-
+	stack<SymbolTable*> getSymbolTable() const { return table; }
+	
 	void increaseLevel() { curLevel++; }
 	void increaseOffset() { curOffset++; }
 
