@@ -27,17 +27,17 @@
     <Filter Include="Source Files\Symbol Table">
       <UniqueIdentifier>{7caa90a9-5154-45ef-b168-e27004266d38}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Handlers">
+    <Filter Include="Source Files\Managers">
       <UniqueIdentifier>{946a13c8-b901-442b-8696-2f1944d0ada8}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Handlers\Error Handlers">
+    <Filter Include="Source Files\Managers\Error Handlers">
       <UniqueIdentifier>{168bb252-5644-4152-bb61-dc2828c03d76}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Handlers\Table Handler">
-      <UniqueIdentifier>{04c78b16-556e-4331-8c36-778b34d712b6}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Handlers\Code Generator">
+    <Filter Include="Source Files\Managers\Code Generator">
       <UniqueIdentifier>{a33ba634-ee0b-4dc4-8254-356917b49cc4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Managers\Table Manager">
+      <UniqueIdentifier>{04c78b16-556e-4331-8c36-778b34d712b6}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -51,16 +51,16 @@
       <Filter>Source Files\Analyzers</Filter>
     </ClCompile>
     <ClCompile Include="Error.cpp">
-      <Filter>Source Files\Handlers\Error Handlers</Filter>
+      <Filter>Source Files\Managers\Error Handlers</Filter>
     </ClCompile>
     <ClCompile Include="SymbolTable.cpp">
       <Filter>Source Files\Symbol Table</Filter>
     </ClCompile>
     <ClCompile Include="SymbolTableManager.cpp">
-      <Filter>Source Files\Handlers\Table Handler</Filter>
+      <Filter>Source Files\Managers\Table Manager</Filter>
     </ClCompile>
     <ClCompile Include="Generator.cpp">
-      <Filter>Source Files\Handlers\Code Generator</Filter>
+      <Filter>Source Files\Managers\Code Generator</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -77,16 +77,16 @@
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="Error.h">
-      <Filter>Source Files\Handlers\Error Handlers</Filter>
+      <Filter>Source Files\Managers\Error Handlers</Filter>
     </ClInclude>
     <ClInclude Include="SymbolTable.h">
       <Filter>Source Files\Symbol Table</Filter>
     </ClInclude>
     <ClInclude Include="SymbolTableManager.h">
-      <Filter>Source Files\Handlers\Table Handler</Filter>
+      <Filter>Source Files\Managers\Table Manager</Filter>
     </ClInclude>
     <ClInclude Include="Generator.h">
-      <Filter>Source Files\Handlers\Code Generator</Filter>
+      <Filter>Source Files\Managers\Code Generator</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

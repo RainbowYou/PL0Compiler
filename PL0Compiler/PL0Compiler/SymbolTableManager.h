@@ -23,7 +23,9 @@ public:
 	bool insert(SymbolTable*);
 	//bool remove(int);
 	void pop();
+	SymbolTable* top() const;
 	bool find(string s);
+	SymbolTable* getTableEntry(string s);
 
 public:
 	void setCurrentName(string n);

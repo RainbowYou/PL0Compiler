@@ -37,15 +37,35 @@ void SymbolTableManager::pop()
 	table.pop();
 }
 
+SymbolTable* SymbolTableManager::top() const
+{
+	SymbolTable* entry = table.top();
+	return entry;
+}
+
 bool SymbolTableManager::find(string s)
 {
-	int len = table.size();
+	stack<SymbolTable*> tableBuff = table;
+	int len = tableBuff.size();
 	for (int i = 0; i < len; i++)
 	{
 		//if (s == table[i]->getName()) return true;
-		if (s == table.top()->getName()) return true;
+		if (s == tableBuff.top()->getName()) return true;
+		tableBuff.pop();
 	}
 	return false;
+}
+
+SymbolTable* SymbolTableManager::getTableEntry(string s)
+{
+	stack<SymbolTable*> tableBuff = table;
+	int len = tableBuff.size();
+	for (int i = 0; i < len; i++)
+	{
+		if (s == tableBuff.top()->getName()) return tableBuff.top();
+		tableBuff.pop();
+	}
+	return NULL;
 }
 
 void SymbolTableManager::setCurrentName(string s)

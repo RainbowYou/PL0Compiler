@@ -1,6 +1,7 @@
 #include "WordAnalyzer.h"
 #include "SyntaxAnalyzer.h"
 #include "Generator.h"
+#include "SymbolTable.h"
 #include <vector>
 
 #define DEBUG 1
@@ -213,6 +214,12 @@ void SyntaxAnalyzer::procedureHeader()
 		tableManager->increaseLevel();
 		wordAnalyzer.setSymbol();
 		partialProgram();
+
+		while (tableManager->top()->getLevel() == tableManager->getCurrentLevel())
+		{
+			tableManager->pop();
+		}
+
 		tableManager->decreaseLevel();
 	}
 	else
@@ -248,6 +255,12 @@ void SyntaxAnalyzer::assignSentence()
 	{
 		cout << "identifier " << wordAnalyzer.getToken() << " not declared!" << endl;
 	}
+	else
+	{
+		SymbolTable* st = tableManager->getTableEntry(wordAnalyzer.getToken());
+		int l = tableManager->getCurrentLevel() - st->getLevel();
+		Generator::store(l, st->getAddress());
+	}
 	wordAnalyzer.setSymbol();
 	if (wordAnalyzer.getType() == ASSIGN)
 	{
@@ -270,6 +283,9 @@ void SyntaxAnalyzer::expression()
 
 	while (wordAnalyzer.getType() == RELATIONO)
 	{
+		if (wordAnalyzer.getToken() == "+") Generator::operation(2);
+		else Generator::operation(3);
+
 		item();
 		wordAnalyzer.setSymbol();
 	}
@@ -281,6 +297,9 @@ void SyntaxAnalyzer::item()
 	factor();
 	while (wordAnalyzer.getType() == MULTIPLYO)
 	{
+		if (wordAnalyzer.getToken() == "*") Generator::operation(4);
+		else Generator::operation(5);
+
 		wordAnalyzer.setSymbol();
 		factor();	
 	}
@@ -308,6 +327,14 @@ void SyntaxAnalyzer::factor()
 		{
 			cout << "identifier " << wordAnalyzer.getToken() << " not declared!" << endl;
 		}
+		
+		else
+		{
+			SymbolTable* st = tableManager->getTableEntry(wordAnalyzer.getToken());
+			int l = tableManager->getCurrentLevel() - st->getLevel();
+			Generator::load(l, st->getAddress());
+		}
+
 		wordAnalyzer.setSymbol();
 	}
 
@@ -386,6 +413,12 @@ void SyntaxAnalyzer::procedureCallSentence()
 		{
 			cout << "identifier " << wordAnalyzer.getToken() << " not declared!" << endl;
 		}
+		else
+		{
+			SymbolTable* st = tableManager->getTableEntry(wordAnalyzer.getToken());
+			int l = tableManager->getCurrentLevel() - st->getLevel();
+			Generator::call(l, st->getAddress());
+		}
 	}
 	else
 	{
@@ -442,10 +475,19 @@ void SyntaxAnalyzer::readSentence()
 	{
 		wordAnalyzer.setSymbol();
 		identifier(1);
+
+		SymbolTable* st = tableManager->getTableEntry(tableManager->getCurrentName());
+		int l = tableManager->getCurrentLevel() - st->getLevel();
+		Generator::read(l,st->getAddress());
+
 		while (wordAnalyzer.getType() == COMMA)
 		{
 			wordAnalyzer.setSymbol();
 			identifier(1);
+
+			SymbolTable* st = tableManager->getTableEntry(tableManager->getCurrentName());
+			int l = tableManager->getCurrentLevel() - st->getLevel();
+			Generator::read(l, st->getAddress());
 		}
 			
 		if (wordAnalyzer.getType() == RP)
@@ -470,15 +512,17 @@ void SyntaxAnalyzer::writeSentence()
 	{
 		wordAnalyzer.setSymbol();
 		identifier(1);
+		Generator::write();
+
 		while (wordAnalyzer.getType() == COMMA)
 		{
 			wordAnalyzer.setSymbol();
 			identifier(1);
+			Generator::write();
 		}
 
 		if (wordAnalyzer.getType() == RP)
 		{
-
 		}
 		else
 		{

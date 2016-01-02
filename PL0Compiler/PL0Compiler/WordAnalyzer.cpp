@@ -28,7 +28,7 @@ void WordAnalyzer::initialData()
 
 bool WordAnalyzer::fillSymbols()
 {
-	ifstream sourceFile("test2.txt", ios::in);
+	ifstream sourceFile("test3.txt", ios::in);
 
 	if (!sourceFile)
 	{
