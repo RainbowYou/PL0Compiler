@@ -1,5 +1,6 @@
 #include "WordAnalyzer.h"
 #include "SyntaxAnalyzer.h"
+#include "Generator.h"
 #include <vector>
 
 #define DEBUG 1

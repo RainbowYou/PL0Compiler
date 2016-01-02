@@ -28,7 +28,7 @@ void WordAnalyzer::initialData()
 
 bool WordAnalyzer::fillSymbols()
 {
-	ifstream sourceFile("test3.txt", ios::in);
+	ifstream sourceFile("test2.txt", ios::in);
 
 	if (!sourceFile)
 	{
@@ -357,5 +357,5 @@ void WordAnalyzer::analyze()
 	{
 		cout << "\nerror:token \" " << this->getSymbol() << " \" declaration is invalid\n" << endl;
 	}
-	cout << "( " << this->getType() << " , " << this->getToken() << " )\n";
+	//cout << "( " << this->getType() << " , " << this->getToken() << " )\n";
 }

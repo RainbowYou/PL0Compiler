@@ -36,6 +36,9 @@
     <Filter Include="Source Files\Handlers\Table Handler">
       <UniqueIdentifier>{04c78b16-556e-4331-8c36-778b34d712b6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Handlers\Code Generator">
+      <UniqueIdentifier>{a33ba634-ee0b-4dc4-8254-356917b49cc4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -55,6 +58,9 @@
     </ClCompile>
     <ClCompile Include="SymbolTableManager.cpp">
       <Filter>Source Files\Handlers\Table Handler</Filter>
+    </ClCompile>
+    <ClCompile Include="Generator.cpp">
+      <Filter>Source Files\Handlers\Code Generator</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -78,6 +84,9 @@
     </ClInclude>
     <ClInclude Include="SymbolTableManager.h">
       <Filter>Source Files\Handlers\Table Handler</Filter>
+    </ClInclude>
+    <ClInclude Include="Generator.h">
+      <Filter>Source Files\Handlers\Code Generator</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

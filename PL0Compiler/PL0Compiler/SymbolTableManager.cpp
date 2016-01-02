@@ -3,7 +3,7 @@
 
 SymbolTableManager::SymbolTableManager()
 {
-	setCurrentLevel(0);
+	setCurrentLevel(1);
 	setCurrentOffset(3);
 }
 
