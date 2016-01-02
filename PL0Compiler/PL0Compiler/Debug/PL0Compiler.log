@@ -1,10 +1,8 @@
-﻿Build started 2016/1/2 20:47:07.
+﻿Build started 2016/1/2 21:01:21.
      1>Project "C:\Users\煜\Documents\Visual Studio 2013\Projects\PL0Compiler\PL0Compiler\PL0Compiler\PL0Compiler.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         F:\Program Files (x86)Microsoft\Visual Studio\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _CRT_SECURE_NO_WARNINGS /D D_SCL_SECURE_NO_WARNINGS /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt SyntaxAnalyzer.cpp
-         SyntaxAnalyzer.cpp
-     1>c:\users\煜\documents\visual studio 2013\projects\pl0compiler\pl0compiler\pl0compiler\symboltable.h(33): warning C4520: 'SymbolTable' : multiple default constructors specified
-     1>c:\users\煜\documents\visual studio 2013\projects\pl0compiler\pl0compiler\pl0compiler\syntaxanalyzer.cpp(181): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+         F:\Program Files (x86)Microsoft\Visual Studio\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _CRT_SECURE_NO_WARNINGS /D D_SCL_SECURE_NO_WARNINGS /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Generator.cpp
+         Generator.cpp
        Link:
          F:\Program Files (x86)Microsoft\Visual Studio\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\煜\Documents\Visual Studio 2013\Projects\PL0Compiler\PL0Compiler\Debug\PL0Compiler.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\煜\Documents\Visual Studio 2013\Projects\PL0Compiler\PL0Compiler\Debug\PL0Compiler.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\煜\Documents\Visual Studio 2013\Projects\PL0Compiler\PL0Compiler\Debug\PL0Compiler.lib" /MACHINE:X86 Debug\Error.obj
          Debug\Generator.obj
@@ -18,4 +16,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:01.21
+Time Elapsed 00:00:01.23

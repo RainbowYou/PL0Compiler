@@ -4,45 +4,45 @@ using namespace std;
 
 void Generator::operation(int addr)
 {
-	cout << "OPR 0," << addr << endl;
+	cout << "OPR\t0\t" << addr << endl;
 }
 
 void Generator::load(int l, int addr)
 {
-	cout << "LOD " << l << "," << addr << endl;
+	cout << "LOD\t" << l << "\t" << addr << endl;
 }
 
 void Generator::store(int l, int addr)
 {
-	cout << "STO " << l << "," << addr << endl;
+	cout << "STO\t" << l << "\t" << addr << endl;
 }
 
 void Generator::call(int l, int addr)
 {
-	cout << "CAL " << l << "," << addr << endl;
+	cout << "CAL\t" << l << "\t" << addr << endl;
 }
 
 void Generator::increaseTop(int addr)
 {
-	cout << "INT 0," << addr << endl;
+	cout << "INT\t0\t" << addr << endl;
 }
 
 void Generator::jump(int addr)
 {
-	cout << "JMP 0," << addr << endl;
+	cout << "JMP\t0\t" << addr << endl;
 }
 
 void Generator::jumpCompare(int addr)
 {
-	cout << "JPC 0," << addr << endl;
+	cout << "JPC\t0\t" << addr << endl;
 }
 
 void Generator::read(int l, int addr)
 {
-	cout << "RED " << l << "," << addr << endl;
+	cout << "RED\t" << l << "\t" << addr << endl;
 }
 
 void Generator::write()
 {
-	cout << "WRT 0,0" << endl;
+	cout << "WRT\t0\t0" << endl;
 }
