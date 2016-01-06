@@ -4,7 +4,7 @@
 #include "SymbolTable.h"
 #include <vector>
 
-#define DEBUG 1
+#define DEBUG 0
 
 SyntaxAnalyzer::SyntaxAnalyzer()
 {

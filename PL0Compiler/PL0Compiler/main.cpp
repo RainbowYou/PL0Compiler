@@ -8,8 +8,10 @@ using namespace std;
 
 int main(void)
 {
+	cout << "\n********************13211017-陈煜的编译原理大作业********************\n" << endl;
+
 	SyntaxAnalyzer* syntaxAnalyzer = new SyntaxAnalyzer();
 	syntaxAnalyzer->analyze();
 
-	//delete syntaxAnalyzer;
+	delete syntaxAnalyzer;
 }

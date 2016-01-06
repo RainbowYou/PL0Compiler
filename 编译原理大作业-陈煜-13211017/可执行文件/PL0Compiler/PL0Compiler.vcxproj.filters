@@ -1,0 +1,112 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Test Files">
+      <UniqueIdentifier>{16c6660a-8599-4a10-a695-ed33d190b484}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Test Files\Source">
+      <UniqueIdentifier>{fbca4771-6f51-43fe-b52c-085f9c6d18cc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Syntax Files">
+      <UniqueIdentifier>{3137276c-40b4-47c5-b36b-a11fb424dc12}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Test Files\Dest">
+      <UniqueIdentifier>{01205e79-d421-411f-94c6-9e95d07615e4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Analyzers">
+      <UniqueIdentifier>{b4f37d80-87c8-4099-aaa6-8934fee322ac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Symbol Table">
+      <UniqueIdentifier>{7caa90a9-5154-45ef-b168-e27004266d38}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Managers">
+      <UniqueIdentifier>{946a13c8-b901-442b-8696-2f1944d0ada8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Managers\Error Handlers">
+      <UniqueIdentifier>{168bb252-5644-4152-bb61-dc2828c03d76}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Managers\Code Generator">
+      <UniqueIdentifier>{a33ba634-ee0b-4dc4-8254-356917b49cc4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Managers\Table Manager">
+      <UniqueIdentifier>{04c78b16-556e-4331-8c36-778b34d712b6}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SyntaxAnalyzer.cpp">
+      <Filter>Source Files\Analyzers</Filter>
+    </ClCompile>
+    <ClCompile Include="WordAnalyzer.cpp">
+      <Filter>Source Files\Analyzers</Filter>
+    </ClCompile>
+    <ClCompile Include="Error.cpp">
+      <Filter>Source Files\Managers\Error Handlers</Filter>
+    </ClCompile>
+    <ClCompile Include="SymbolTable.cpp">
+      <Filter>Source Files\Symbol Table</Filter>
+    </ClCompile>
+    <ClCompile Include="SymbolTableManager.cpp">
+      <Filter>Source Files\Managers\Table Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="Generator.cpp">
+      <Filter>Source Files\Managers\Code Generator</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="analyzer.h">
+      <Filter>Source Files\Analyzers</Filter>
+    </ClInclude>
+    <ClInclude Include="SyntaxAnalyzer.h">
+      <Filter>Source Files\Analyzers</Filter>
+    </ClInclude>
+    <ClInclude Include="WordAnalyzer.h">
+      <Filter>Source Files\Analyzers</Filter>
+    </ClInclude>
+    <ClInclude Include="Symbol.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Error.h">
+      <Filter>Source Files\Managers\Error Handlers</Filter>
+    </ClInclude>
+    <ClInclude Include="SymbolTable.h">
+      <Filter>Source Files\Symbol Table</Filter>
+    </ClInclude>
+    <ClInclude Include="SymbolTableManager.h">
+      <Filter>Source Files\Managers\Table Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="Generator.h">
+      <Filter>Source Files\Managers\Code Generator</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="test2.txt">
+      <Filter>Test Files\Source</Filter>
+    </Text>
+    <Text Include="test3.txt">
+      <Filter>Test Files\Source</Filter>
+    </Text>
+    <Text Include="test1.txt">
+      <Filter>Test Files\Source</Filter>
+    </Text>
+    <Text Include="..\..\syntax\C0文法.txt">
+      <Filter>Syntax Files</Filter>
+    </Text>
+    <Text Include="..\..\syntax\PL0文法.txt">
+      <Filter>Syntax Files</Filter>
+    </Text>
+    <Text Include="output1.txt">
+      <Filter>Test Files\Dest</Filter>
+    </Text>
+  </ItemGroup>
+</Project>
