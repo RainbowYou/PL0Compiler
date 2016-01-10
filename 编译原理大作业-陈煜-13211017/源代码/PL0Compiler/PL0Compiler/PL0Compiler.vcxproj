@@ -47,9 +47,9 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>C:\Program Files %28x86%29\Parser Generator 2\Cpp\Include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Program Files %28x86%29\Parser Generator 2\Cpp\Lib\msvc32;$(LibraryPath)</LibraryPath>
-    <SourcePath>C:\Program Files %28x86%29\Parser Generator 2\Cpp\Source;$(SourcePath)</SourcePath>
+    <IncludePath>$(IncludePath)</IncludePath>
+    <LibraryPath>$(LibraryPath)</LibraryPath>
+    <SourcePath>$(SourcePath)</SourcePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -84,7 +84,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>ylmt.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -109,7 +109,6 @@
   <ItemGroup>
     <Text Include="..\..\syntax\C0文法.txt" />
     <Text Include="..\..\syntax\PL0文法.txt" />
-    <Text Include="output1.txt" />
     <Text Include="test1.txt" />
     <Text Include="test2.txt" />
     <Text Include="test3.txt" />

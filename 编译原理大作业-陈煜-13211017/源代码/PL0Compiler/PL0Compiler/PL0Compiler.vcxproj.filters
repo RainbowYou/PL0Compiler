@@ -105,8 +105,5 @@
     <Text Include="..\..\syntax\PL0文法.txt">
       <Filter>Syntax Files</Filter>
     </Text>
-    <Text Include="output1.txt">
-      <Filter>Test Files\Dest</Filter>
-    </Text>
   </ItemGroup>
 </Project>

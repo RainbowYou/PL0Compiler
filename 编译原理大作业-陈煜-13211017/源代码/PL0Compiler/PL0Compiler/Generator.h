@@ -1,8 +1,13 @@
 #ifndef GENERATOR_H
 #define GENERATOR_H
 
+#include <fstream>
+using namespace std;
+
 class Generator
 {
+private:
+	//static ofstream objectCode;
 public:
 	static void operation(int opeType);
 	static void load(int l, int addr);
